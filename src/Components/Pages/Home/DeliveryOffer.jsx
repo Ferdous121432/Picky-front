@@ -26,15 +26,15 @@ export default function () {
           </div>
         </div>
       </MaxWidth81> */}
-      <div className="flex flex-col md:flex-row">
-        <div>
+      <div className="flex w-full flex-col items-center justify-between md:flex-row">
+        <div className="w-full">
           <img
             src="./public/hero/sailor3.webp"
             alt=""
             className="w-full object-cover"
           />
         </div>
-        <div>
+        <div className="w-full">
           <img
             src="./public/hero/sailor4.webp"
             alt=""

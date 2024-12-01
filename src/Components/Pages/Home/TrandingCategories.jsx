@@ -46,18 +46,32 @@ function TrendingCategories() {
 
   return (
     // <MaxWidth81>
-    <section className="mt-[1rem] flex w-full flex-col items-center justify-center">
+    <section className="mb-10 mt-[1rem] flex w-full flex-col items-center justify-center gap-2 md:gap-4">
       <h2 className="mb-4 text-center text-[2.5rem] font-bold leading-tight text-neutral-700">
         Trending Categories
       </h2>
-      <div className="m-auto w-full md:px-6">
-        <div className="grid grid-flow-row grid-cols-3 justify-between">
-          <div className="bg-slate-600">1</div>
-          <div className="aspect-[2/1] w-full">
-            <div className="h-full w-full bg-yellow-400">2</div>
-            <div className="h-full w-full bg-yellow-900">3</div>
+      <div className="m-auto w-full gap-2 md:gap-4 md:px-6">
+        <div className="grid grid-flow-row grid-cols-1 justify-between gap-2 md:gap-4 lg:grid-cols-3">
+          <div className="aspect-square gap-2 bg-slate-600 md:gap-4">
+            <CategoryCard
+              title="Men"
+              image="./public/category/pickySale3.jpg"
+            />
           </div>
-          <div className="w-full bg-green-700">4</div>
+          <div className="flex aspect-[2/1] w-full flex-col gap-2 md:gap-4">
+            <div className="flex w-full flex-col gap-2 md:flex-row md:gap-4">
+              <div className="aspect-square w-full gap-2 bg-yellow-400 md:gap-4">
+                7
+              </div>
+              <div className="aspect-square w-full gap-2 bg-red-400 md:gap-4">
+                6
+              </div>
+            </div>
+            <div className="h-full w-full gap-2 bg-yellow-900 md:gap-4">3</div>
+          </div>
+          <div className="aspect-square w-full gap-2 bg-green-700 md:gap-4">
+            4
+          </div>
         </div>
       </div>
     </section>
