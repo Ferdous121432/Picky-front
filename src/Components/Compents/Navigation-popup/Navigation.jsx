@@ -8,7 +8,7 @@ export default function Navigation() {
   return (
     <div className="bg-slate-200">
       <MaxWidth81>
-        <div className="relative flex w-full items-center justify-items-stretch py-4 font-semibold uppercase text-slate-900 shadow-xl">
+        <div className="relative hidden w-full items-center justify-items-stretch py-4 font-semibold uppercase text-slate-900 shadow-xl lg:flex">
           <FlyoutLink link="#" flyoutContent="sale">
             SALE
           </FlyoutLink>

@@ -20,7 +20,7 @@ export default function Logo() {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
-        width={150}
+        className="w-24 sm:w-28 md:w-36"
         zoomAndPan="magnify"
         viewBox="0 0 375 112.499997"
         height={45}
@@ -35,7 +35,7 @@ export default function Logo() {
             />
           </clipPath>
         </defs>
-        <g fill="#000000" fillOpacity={1}>
+        <g fill="#1e293b" fillOpacity={1}>
           <g transform="translate(0.277879, 88.800592)">
             <g>
               <motion.path
@@ -50,7 +50,7 @@ export default function Logo() {
                     delay: 0.2,
                     repeat: Infinity,
                     repeatType: "reverse",
-                    repeatDelay: 12,
+                    repeatDelay: 1,
                   },
                   fill: {
                     duration: 2,
@@ -58,7 +58,7 @@ export default function Logo() {
                     delay: 0.2,
                     repeat: Infinity,
                     repeatType: "reverse",
-                    repeatDelay: 12,
+                    repeatDelay: 1,
                   },
                 }}
                 stroke="#000"
@@ -67,7 +67,7 @@ export default function Logo() {
             </g>
           </g>
         </g>
-        <g fill="#000000" fillOpacity={1}>
+        <g fill="#1e293b" fillOpacity={1}>
           <g transform="translate(76.710955, 88.800592)">
             <g>
               <motion.path
@@ -79,18 +79,18 @@ export default function Logo() {
                   default: {
                     duration: 2,
                     ease: "easeInOut",
-                    delay: 2.2,
+                    delay: 0.2,
                     repeat: Infinity,
                     repeatType: "reverse",
-                    repeatDelay: 12,
+                    repeatDelay: 1,
                   },
                   fill: {
                     duration: 2,
                     ease: "easeIn",
-                    delay: 2.2,
+                    delay: 0.2,
                     repeat: Infinity,
                     repeatType: "reverse",
-                    repeatDelay: 12,
+                    repeatDelay: 1,
                   },
                 }}
                 stroke="#000"
@@ -99,7 +99,7 @@ export default function Logo() {
             </g>
           </g>
         </g>
-        <g fill="#000000" fillOpacity={1}>
+        <g fill="#1e293b" fillOpacity={1}>
           <g transform="translate(133.231115, 88.800592)">
             <g>
               <motion.path
@@ -111,18 +111,18 @@ export default function Logo() {
                   default: {
                     duration: 2,
                     ease: "easeInOut",
-                    delay: 4.2,
+                    delay: 0.2,
                     repeat: Infinity,
                     repeatType: "reverse",
-                    repeatDelay: 12,
+                    repeatDelay: 1,
                   },
                   fill: {
                     duration: 2,
                     ease: "easeIn",
-                    delay: 4.2,
+                    delay: 0.2,
                     repeat: Infinity,
                     repeatType: "reverse",
-                    repeatDelay: 12,
+                    repeatDelay: 1,
                   },
                 }}
                 stroke="#000"
@@ -131,7 +131,7 @@ export default function Logo() {
             </g>
           </g>
         </g>
-        <g fill="#000000" fillOpacity={1}>
+        <g fill="#1e293b" fillOpacity={1}>
           <g transform="translate(219.096627, 88.800592)">
             <g>
               <motion.path
@@ -143,18 +143,18 @@ export default function Logo() {
                   default: {
                     duration: 2,
                     ease: "easeInOut",
-                    delay: 6.2,
+                    delay: 0.2,
                     repeat: Infinity,
                     repeatType: "reverse",
-                    repeatDelay: 12,
+                    repeatDelay: 1,
                   },
                   fill: {
                     duration: 2,
                     ease: "easeIn",
-                    delay: 6.2,
+                    delay: 0.2,
                     repeat: Infinity,
                     repeatType: "reverse",
-                    repeatDelay: 12,
+                    repeatDelay: 1,
                   },
                 }}
                 stroke="#000"
@@ -164,7 +164,7 @@ export default function Logo() {
           </g>
         </g>
         <g clipPath="url(#2ab8b5b94d)">
-          <g fill="#000000" fillOpacity={1}>
+          <g fill="#1e293b" fillOpacity={1}>
             <g transform="translate(305.253261, 88.800592)">
               <g>
                 <motion.path
@@ -176,18 +176,18 @@ export default function Logo() {
                     default: {
                       duration: 2,
                       ease: "easeInOut",
-                      delay: 8.2,
+                      delay: 0.2,
                       repeat: Infinity,
                       repeatType: "reverse",
-                      repeatDelay: 12,
+                      repeatDelay: 1,
                     },
                     fill: {
                       duration: 2,
                       ease: "easeIn",
-                      delay: 8.2,
+                      delay: 0.2,
                       repeat: Infinity,
                       repeatType: "reverse",
-                      repeatDelay: 12,
+                      repeatDelay: 1,
                     },
                   }}
                   stroke="#000"

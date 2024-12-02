@@ -7,10 +7,12 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 export default function FooterContact() {
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-left font-bold uppercase tracking-wide text-slate-200 lg:text-lg">
-        CONTACT INFO
-      </h1>
+    <div className="flex flex-col gap-2">
+      <div>
+        <h1 className="text-left font-bold uppercase tracking-wide text-slate-200 lg:text-lg">
+          CONTACT INFO
+        </h1>
+      </div>
       <div className="flex flex-col gap-2 text-left text-slate-100">
         <p>234 Street Name, City Name, United States</p>
         <p>Phone: +123 456 7890</p>
@@ -20,7 +22,7 @@ export default function FooterContact() {
           </Link>
         </p>
       </div>
-      <div className="flex gap-x-2 pt-4">
+      <div className="flex gap-x-2 pt-1">
         <Link to="#" target="_blank">
           <FacebookIcon className="text-slate-100 hover:text-slate-200" />
         </Link>

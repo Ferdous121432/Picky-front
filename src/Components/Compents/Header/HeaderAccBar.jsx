@@ -5,7 +5,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export default function HeaderAccBar() {
   return (
-    <div className="flex items-center justify-center lg:gap-6">
+    <div className="flex items-center justify-end lg:gap-6">
       <PersonIcon />
       <FavoriteBorderIcon />
       <ShoppingCartIcon />

@@ -25,11 +25,19 @@ const serviceInfo = [
 
 export default function TopFooter() {
   return (
-    <div className="flex w-full justify-around bg-slate-800 px-6 py-16 text-start lg:gap-10">
-      <FooterContact />
-      <FooterCard title="Know Us" items={knowUs} />
-      <FooterCard title="shopping information" items={shoppingInfo} />
-      <FooterCard title="SERVICE INFORMATION" items={serviceInfo} />
+    <div className="grid w-full grid-flow-row grid-cols-1 gap-8 bg-slate-800 px-6 py-16 text-start sm:grid-cols-2 lg:grid-cols-4">
+      <div className="w-full">
+        <FooterContact />
+      </div>
+      <div className="w-full">
+        <FooterCard title="Know Us" items={knowUs} />
+      </div>
+      <div className="w-full">
+        <FooterCard title="shopping information" items={shoppingInfo} />
+      </div>
+      <div className="w-full">
+        <FooterCard title="SERVICE INFORMATION" items={serviceInfo} />
+      </div>
     </div>
   );
 }

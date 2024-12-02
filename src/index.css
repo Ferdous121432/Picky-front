@@ -9,13 +9,13 @@
 }
 
 /* Hide scrollbars for all elements */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: "#0f172a";
+*::-webkit-scrollbar {
+  display: none;
 }
 
-*::-webkit-scrollbar {
-  width: 2px;
+* {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }
 
 ::selection {

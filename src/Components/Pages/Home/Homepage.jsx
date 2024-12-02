@@ -120,6 +120,7 @@ export default function Homepage() {
     <div className="h-screen w-screen bg-slate-100">
       <Layout>
         <Hero />
+
         <DeliveryOffer image={deliveryImages} />
         <ProductsSection
           title="Best Sellers"

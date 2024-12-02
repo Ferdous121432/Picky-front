@@ -14,7 +14,7 @@ export default function MiddleHeader() {
           <Logo />
           <div className="flex w-full justify-start lg:gap-10">
             <SearchBar />
-            <div className="flex w-full justify-between gap-10">
+            <div className="flex w-full justify-end gap-10">
               <CallUsNow />
               <HeaderAccBar />
             </div>
