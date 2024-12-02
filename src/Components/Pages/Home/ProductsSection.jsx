@@ -11,16 +11,23 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 import ProductCard from "../../Compents/ProductCard/ProductCard";
 
-function ProductsSection({ title, products }) {
+function ProductsSection({ title, products, description }) {
   const slider = React.useRef(null);
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
 
   return (
     <section className="mt-[1rem] flex flex-col items-center justify-center">
-      <h2 className="mb-4 text-center text-[2.5rem] font-bold leading-tight text-neutral-700">
+      <h2 className="mb-2 text-center text-xl font-bold leading-tight text-slate-700 lg:text-2xl">
         {title}
       </h2>
+      {description && (
+        <div className="mb-4 flex items-center justify-center rounded-full bg-red-700 px-8 py-2">
+          <p className="text-center text-sm font-bold leading-tight text-slate-100 lg:text-md">
+            {description}
+          </p>
+        </div>
+      )}
       <div className="relative m-auto mt-[0.5rem] w-full flex-wrap items-center justify-center gap-4 md:px-6">
         <Swiper
           modules={[Autoplay, Navigation]}

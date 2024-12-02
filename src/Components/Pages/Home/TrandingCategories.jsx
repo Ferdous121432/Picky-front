@@ -58,19 +58,16 @@ function TrendingCategories() {
               image="./public/category/pickySale3.jpg"
             />
           </div>
-          <div className="flex aspect-[2/1] w-full flex-col gap-2 md:gap-4">
-            <div className="flex w-full flex-col gap-2 md:flex-row md:gap-4">
-              <div className="aspect-square w-full gap-2 bg-yellow-400 md:gap-4">
-                7
-              </div>
-              <div className="aspect-square w-full gap-2 bg-red-400 md:gap-4">
-                6
-              </div>
-            </div>
+          <div className="flex aspect-[2/1] w-full flex-col gap-2">
+            <div className="h-full w-full gap-2 bg-red-400 md:gap-4">6</div>
+
             <div className="h-full w-full gap-2 bg-yellow-900 md:gap-4">3</div>
           </div>
           <div className="aspect-square w-full gap-2 bg-green-700 md:gap-4">
-            4
+            <CategoryCard
+              title="Women"
+              image="./public/category/pickySale1.jpg"
+            />
           </div>
         </div>
       </div>

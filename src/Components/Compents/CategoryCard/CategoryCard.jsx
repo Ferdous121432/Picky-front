@@ -32,11 +32,17 @@ export default function CategoryCard({ title, image }) {
   const h1Color = {
     initial: {
       color: "#1e293b",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
       //   textAlign: "center",
       transition: { duration: 0.5 },
     },
     enter: {
       color: "#991b1b",
+      top: "50%",
+      left: "10%",
+      transform: "translate(-50%, -50%)",
       //   textAlign: "left",
       transition: { duration: 0.5 },
     },
@@ -50,7 +56,6 @@ export default function CategoryCard({ title, image }) {
   const arrowOpacity = {
     initial: {
       opacity: 0,
-
       transition: { duration: 0.5 },
     },
     enter: {
@@ -58,7 +63,11 @@ export default function CategoryCard({ title, image }) {
 
       transition: { duration: 0.5 },
     },
-    exit: { opacity: 0 },
+    exit: {
+      opacity: 0,
+
+      transition: { duration: 0.5 },
+    },
   };
 
   return (
@@ -76,23 +85,21 @@ export default function CategoryCard({ title, image }) {
           />
         </div>
         <motion.div
-          className={`absolute bottom-4 left-[50%] flex translate-x-[-50%] items-center justify-between bg-slate-50 px-10`}
+          className={`absolute bottom-4 left-[50%] m-auto flex translate-x-[-50%] items-center justify-between bg-slate-50 px-4`}
           {...animation(divLength)}
         >
-          <div>
-            <motion.h1
-              className={`w-full bg-slate-50 px-4 py-4 text-red-800 hover:text-red-800`}
-              {...animation(h1Color)}
-            >
+          <div className="relative w-full px-4 py-2 md:py-4">
+            <motion.h1 className={`absolute`} {...animation(h1Color)}>
               {title}
             </motion.h1>
+            <div />
+            <motion.div
+              className="flex items-center justify-end"
+              {...animation(arrowOpacity)}
+            >
+              <FontAwesomeIcon icon={faArrowRight} />
+            </motion.div>
           </div>
-          <motion.div
-            className="flex items-center justify-center"
-            {...animation(arrowOpacity)}
-          >
-            <FontAwesomeIcon icon={faArrowRight} />
-          </motion.div>
         </motion.div>
       </div>
     </AnimatePresence>

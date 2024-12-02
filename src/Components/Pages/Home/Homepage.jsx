@@ -4,6 +4,7 @@ import Hero from "./Hero";
 import DeliveryOffer from "./DeliveryOffer";
 import ProductsSection from "./ProductsSection";
 import TrendingCategories from "./TrandingCategories";
+import FeaturedBanner from "./FeaturedBanner";
 
 const products = [
   {
@@ -96,18 +97,50 @@ const categories = [
   },
 ];
 
+const deliveryImages = [
+  {
+    image: "./public/hero/sailor3.webp",
+  },
+  {
+    image: "./public/hero/sailor4.webp",
+  },
+];
+
+const winterImages = [
+  {
+    image: "./public/category/s1.jpg",
+  },
+  {
+    image: "./public/category/s2.jpg",
+  },
+];
+
 export default function Homepage() {
   return (
     <div className="h-screen w-screen bg-slate-100">
       <Layout>
         <Hero />
-        <DeliveryOffer />
+        <DeliveryOffer image={deliveryImages} />
         <ProductsSection
           title="Best Sellers"
           products={products}
           caseName="BestSellers"
         />
         <TrendingCategories />
+        <ProductsSection
+          title="Best Sellers"
+          description="Winter/24"
+          products={products}
+          caseName="BestSellers"
+        />
+        <DeliveryOffer image={winterImages} />
+        <ProductsSection
+          title="Best Sellers"
+          description="Featured"
+          products={products}
+          caseName="BestSellers"
+        />
+        <FeaturedBanner image={winterImages} />
       </Layout>
     </div>
   );
