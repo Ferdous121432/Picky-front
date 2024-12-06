@@ -6,9 +6,11 @@ import TopHeader from "../Header/TopHeader";
 import { createRef, useEffect, useState } from "react";
 
 import { motion, useScroll } from "framer-motion";
+import { nav } from "framer-motion/client";
 
-export default function MobileHeader() {
+export default function MobileHeader({ handleMobileNav }) {
   const [isScrolled, setIsScrolled] = useState(false);
+
   const headerRef = createRef();
   const { scrollYProgress } = useScroll();
 
@@ -16,10 +18,8 @@ export default function MobileHeader() {
     const handleScroll = () => {
       if (window.scrollY) {
         setIsScrolled(true);
-        console.log("scrolled");
       } else {
         setIsScrolled(false);
-        console.log("not scrolled");
       }
     };
 
@@ -69,7 +69,7 @@ export default function MobileHeader() {
         {...animation(popHeader)}
         className="z-[1000] bg-slate-100 lg:hidden"
       >
-        {mainHeader()}
+        <MainHeaderMobile handleMobileNav={handleMobileNav} />
       </motion.div>
     );
   }
@@ -77,18 +77,18 @@ export default function MobileHeader() {
   return (
     <motion.div
       {...animation(header)}
-      className="z-[1000] bg-slate-100 lg:hidden"
+      className="z-[100] bg-slate-100 lg:hidden"
     >
-      {topHeader()}
-      {mainHeader()}
+      <TopHeaderMobile />
+      <MainHeaderMobile handleMobileNav={handleMobileNav} />
     </motion.div>
   );
 }
 
-const mainHeader = () => {
+const MainHeaderMobile = ({ handleMobileNav }) => {
   return (
     <div className="flex flex-row items-center justify-between px-8 py-2 md:py-4">
-      <div>
+      <div className="z-[1000]" onClick={handleMobileNav}>
         <svg
           className="w-4 sm:w-5 md:w-6"
           xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +111,7 @@ const mainHeader = () => {
   );
 };
 
-const topHeader = () => {
+const TopHeaderMobile = () => {
   return (
     <div className="w-full items-center justify-center">
       <h1 className="mx-auto bg-slate-800 px-1 py-2 text-center text-xs font-semibold tracking-wider text-slate-100">

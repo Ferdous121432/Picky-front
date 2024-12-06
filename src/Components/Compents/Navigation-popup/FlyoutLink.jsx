@@ -6,20 +6,22 @@ import Projects from "./Projects";
 import { AnimatePresence, delay, motion, stagger } from "framer-motion";
 
 import Homepage from "../../Pages/Home/Homepage";
+import zIndex from "@mui/material/styles/zIndex";
 
 const flyoutVariants = {
   hidden: {
     opacity: 0,
-    y: 15,
+    zIndex: -1,
+    y: -100,
     transition: {
-      staggerChildren: 0.5,
-      delay: 0.5,
-      duration: 0.5,
+      staggerChildren: 0.3,
+      duration: 0.3,
       ease: "easeOut",
     },
   },
-  visible: {
+  enter: {
     opacity: 1,
+    zIndex: -1,
     y: 0,
     transition: {
       staggerChildren: 0.5,
@@ -36,6 +38,15 @@ export default function FlyoutLink({
   lastChild,
 }) {
   const [open, setOpen] = useState(false);
+
+  const animation = (variants) => {
+    return {
+      initial: "hidden",
+      animate: open ? "enter" : "hidden",
+      exit: "exit",
+      variants,
+    };
+  };
 
   const showFlyout = open && flyoutContent;
 
@@ -69,20 +80,18 @@ export default function FlyoutLink({
           style={{
             transform: open ? "scaleX(1)" : "scaleX(0)",
           }}
-          className="roundedtrue absolute -bottom-2 -left-2 -right-2 h-1 origin-left bg-slate-200 transition-transform duration-300 ease-out"
-        ></span>
+          className="roundedtrue absolute -bottom-2 -left-2 -right-2 h-1 origin-left bg-slate-900 transition-transform duration-300 ease-out"
+        />
       </a>
       <AnimatePresence>
         {showFlyout && (
           <motion.div
-            variants={flyoutVariants}
-            initial="hidden"
-            animate="visible"
+            {...animation(flyoutVariants)}
             style={{ x: "-50%" }}
             className="absolute left-1/2 top-14"
           >
             <div className="absolute -top-4 left-0 right-0 h-12 w-full bg-transparent" />
-            {/* <div className="absolute left-1/2 top-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-slate-600" /> */}
+
             {showFlyout && renderFlyoutContent()}
           </motion.div>
         )}

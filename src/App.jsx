@@ -1,13 +1,16 @@
 import React from "react";
 import Homepage from "./Components/Pages/Home/Homepage";
+import { AnimatePresence } from "framer-motion";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 export default function App() {
+  const location = useLocation();
+
   return (
-    <div
-      className="flex flex-col items-center justify-center"
-      style={{ textAlign: "-webkit-center" }}
-    >
-      <Homepage />
-    </div>
+    <AnimatePresence mode="wait">
+      <Routes key={location.pathname} location={location}>
+        <Route path="/" element={<Homepage />} />
+      </Routes>
+    </AnimatePresence>
   );
 }
