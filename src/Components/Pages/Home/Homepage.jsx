@@ -8,7 +8,7 @@ import FeaturedBanner from "./FeaturedBanner";
 
 const products = [
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     discount: "10%",
     newProduct: true,
     name: "Product 1",
@@ -17,7 +17,7 @@ const products = [
     oldPrice: "110",
   },
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     discount: "15%",
     newProduct: true,
     name: "Product 2",
@@ -26,7 +26,7 @@ const products = [
     oldPrice: "230",
   },
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     discount: "20%",
     newProduct: true,
     name: "Product 3",
@@ -35,7 +35,7 @@ const products = [
     oldPrice: "350",
   },
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     discount: "25%",
     newProduct: true,
     name: "Product 4",
@@ -44,7 +44,7 @@ const products = [
     oldPrice: "450",
   },
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     discount: "30%",
     newProduct: true,
     name: "Product 5",
@@ -56,62 +56,62 @@ const products = [
 
 const categories = [
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     name: "Category 1",
   },
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     name: "Category 2",
   },
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     name: "Category 3",
   },
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     name: "Category 4",
   },
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     name: "Category 5",
   },
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     name: "Category 6",
   },
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     name: "Category 7",
   },
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     name: "Category 8",
   },
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     name: "Category 9",
   },
   {
-    image: "./public/sale/pickySale4.jpg",
+    image: "./sale/pickySale4.jpg",
     name: "Category 10",
   },
 ];
 
 const deliveryImages = [
   {
-    image: "./public/hero/sailor3.webp",
+    image: "./hero/sailor3.webp",
   },
   {
-    image: "./public/hero/sailor4.webp",
+    image: "./hero/sailor4.webp",
   },
 ];
 
 const winterImages = [
   {
-    image: "./public/category/s1.jpg",
+    image: "./category/s1.jpg",
   },
   {
-    image: "./public/category/s2.jpg",
+    image: "./category/s2.jpg",
   },
 ];
 
