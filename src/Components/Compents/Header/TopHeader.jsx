@@ -3,14 +3,14 @@ import MaxWidth81 from "../../Utils/MaxWidth81";
 
 export default function TopHeader() {
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center">
       <div>
-        <h1 className="bg-slate-800 py-2 text-center text-md font-semibold tracking-widest text-slate-100">
+        <h1 className="w-screen bg-slate-800 py-2 text-center text-md font-semibold tracking-widest text-slate-100">
           Step into the Festive Season with Picky
         </h1>
       </div>
       <MaxWidth81>
-        <div className="flex justify-between py-2">
+        <div className="flex w-full justify-between py-2">
           <p>Picky Life</p>
           <div>
             <ul className="flex justify-center gap-4">

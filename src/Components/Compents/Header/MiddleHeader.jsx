@@ -8,7 +8,7 @@ import MaxWidth81 from "../../Utils/MaxWidth81";
 
 export default function MiddleHeader() {
   return (
-    <div className="bg-slate-300">
+    <div className="flex justify-center bg-slate-300">
       <MaxWidth81>
         <div className="flex gap-[5rem] py-4">
           <Logo />

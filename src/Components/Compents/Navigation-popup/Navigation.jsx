@@ -6,9 +6,9 @@ import MaxWidth81 from "../../Utils/MaxWidth81";
 
 export default function Navigation() {
   return (
-    <div className="bg-slate-200">
+    <div className="flex w-screen justify-center bg-slate-200">
       <MaxWidth81>
-        <div className="relative hidden w-full items-center justify-items-stretch py-4 font-semibold uppercase text-slate-900 shadow-xl lg:flex">
+        <div className="relative hidden items-center justify-between py-4 font-semibold uppercase text-slate-900 shadow-xl lg:flex">
           <FlyoutLink link="#" flyoutContent="sale">
             SALE
           </FlyoutLink>

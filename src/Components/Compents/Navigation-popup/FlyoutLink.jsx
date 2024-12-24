@@ -5,13 +5,10 @@ import { Link } from "react-router-dom";
 import Projects from "./Projects";
 import { AnimatePresence, delay, motion, stagger } from "framer-motion";
 
-import Homepage from "../../Pages/Home/Homepage";
-import zIndex from "@mui/material/styles/zIndex";
-
 const flyoutVariants = {
   hidden: {
     opacity: 0,
-    zIndex: -1,
+    zIndex: 0,
     y: -100,
     transition: {
       staggerChildren: 0.3,
@@ -21,7 +18,7 @@ const flyoutVariants = {
   },
   enter: {
     opacity: 1,
-    zIndex: -1,
+    zIndex: 0,
     y: 0,
     transition: {
       staggerChildren: 0.5,
@@ -87,10 +84,9 @@ export default function FlyoutLink({
         {showFlyout && (
           <motion.div
             {...animation(flyoutVariants)}
-            style={{ x: "-50%" }}
-            className="absolute left-1/2 top-14"
+            className="absolute left-0 top-14 w-full bg-slate-200"
           >
-            <div className="absolute -top-4 left-0 right-0 h-12 w-full bg-transparent" />
+            <div className="absolute -top-4 left-0 h-12 w-full bg-transparent" />
 
             {showFlyout && renderFlyoutContent()}
           </motion.div>
