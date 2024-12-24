@@ -19,27 +19,27 @@ function TrendingCategories() {
   const categoris = [
     {
       id: 1,
-      image: "./public/sale/pickySale4.jpg",
+      image: "./sale/pickySale4.jpg",
       name: "Category 1",
     },
     {
       id: 2,
-      image: "./public/sale/pickySale4.jpg",
+      image: "./sale/pickySale4.jpg",
       name: "Category 2",
     },
     {
       id: 3,
-      image: "./public/sale/pickySale4.jpg",
+      image: "./sale/pickySale4.jpg",
       name: "Category 3",
     },
     {
       id: 4,
-      image: "./public/sale/pickySale4.jpg",
+      image: "./sale/pickySale4.jpg",
       name: "Category 4",
     },
     {
       id: 5,
-      image: "./public/sale/pickySale4.jpg",
+      image: "./sale/pickySale4.jpg",
       name: "Category 5",
     },
   ];
@@ -53,10 +53,7 @@ function TrendingCategories() {
       <div className="m-auto w-full gap-2 md:gap-4 md:px-6">
         <div className="grid grid-flow-row grid-cols-1 justify-between gap-2 md:gap-4 lg:grid-cols-3">
           <div className="aspect-square gap-2 bg-slate-600 md:gap-4">
-            <CategoryCard
-              title="Men"
-              image="./public/category/pickySale3.jpg"
-            />
+            <CategoryCard title="Men" image="./category/pickySale3.jpg" />
           </div>
           <div className="flex aspect-[2/1] w-full flex-col gap-2">
             <div className="h-full w-full gap-2 bg-red-400 md:gap-4">6</div>
@@ -64,10 +61,7 @@ function TrendingCategories() {
             <div className="h-full w-full gap-2 bg-yellow-900 md:gap-4">3</div>
           </div>
           <div className="aspect-square w-full gap-2 bg-green-700 md:gap-4">
-            <CategoryCard
-              title="Women"
-              image="./public/category/pickySale1.jpg"
-            />
+            <CategoryCard title="Women" image="./category/pickySale1.jpg" />
           </div>
         </div>
       </div>
