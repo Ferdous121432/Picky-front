@@ -84,7 +84,7 @@ export default function FlyoutLink({
         {showFlyout && (
           <motion.div
             // {...animation(flyoutVariants)}
-            className="absolute left-0 top-14 w-full bg-slate-200"
+            className="absolute left-0 top-14 w-screen bg-slate-200"
           >
             <div className="absolute -top-4 left-0 h-12 w-full bg-transparent" />
 
