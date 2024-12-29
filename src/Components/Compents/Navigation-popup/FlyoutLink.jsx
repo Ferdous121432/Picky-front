@@ -83,7 +83,7 @@ export default function FlyoutLink({
       <AnimatePresence>
         {showFlyout && (
           <motion.div
-            {...animation(flyoutVariants)}
+            // {...animation(flyoutVariants)}
             className="absolute left-0 top-14 w-full bg-slate-200"
           >
             <div className="absolute -top-4 left-0 h-12 w-full bg-transparent" />
