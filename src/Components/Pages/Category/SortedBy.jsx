@@ -1,15 +1,21 @@
 import { motion } from "framer-motion";
 import React from "react";
 
-export default function SortedBy() {
+export default function SortedBy({ open, setOpen }) {
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
   return (
-    <div className="text-base text-primeColor relative flex h-[50px] w-full items-center justify-between gap-2 bg-slate-800 px-6 lg:w-[500px]">
-      <p className="">Sorted By</p>
-      <select className="text-base bg-slate-800 outline-none">
-        <option value="all">All</option>
-        <option value="category1">Category 1</option>
-        <option value="category2">Category 2</option>
-      </select>
+    <div className="flex items-center justify-between gap-2 py-2 text-xs md:text-sm">
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="rounded bg-slate-200 px-2 py-1 text-slate-700"
+        onClick={handleClick}
+      >
+        Filters & Sort
+      </motion.button>
     </div>
   );
 }
