@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const options = ["option 1", "option 2", "option 3", "option 4"];
 
@@ -7,11 +7,16 @@ export default function SortedBy() {
 
   const handleCheckboxChange = (event) => {
     const selected = event.target.name;
-    setSelectedOption(selectedOption === selected ? null : selected);
+    setSelectedOption(selectedOption === selected ? selected : selected);
   };
+
+  useEffect(() => {
+    console.log(selectedOption);
+  }, [selectedOption]);
 
   return (
     <div>
+      {/* TODO: DefaultChecked value is not working */}
       {options.map((option, index) => (
         <div key={index} className="my-2 flex items-center justify-start gap-2">
           <input
@@ -20,6 +25,7 @@ export default function SortedBy() {
             name={option}
             id={option}
             value={option}
+            defaultChecked={selectedOption === option}
             checked={selectedOption === option}
             onChange={handleCheckboxChange}
           />

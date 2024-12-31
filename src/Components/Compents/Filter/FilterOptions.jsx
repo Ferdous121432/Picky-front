@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { div } from "framer-motion/client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import FilterName from "./FilterName";
+import { use } from "react";
 
 const heightVariants = {
   hidden: {
@@ -34,21 +35,29 @@ const heightVariants = {
 };
 
 export default function FilterOptions({ options, name }) {
-  //   const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm();
   const [filterOpen, setFilterOpen] = React.useState(false);
+  const filterData = [];
+  const sortData = [];
 
   const handleCheckboxChange = (event) => {
     const label = event.target.nextSibling;
     const span = label.querySelector("span");
+
     if (event.target.checked) {
       span.style.backgroundColor = "black";
+      if (!filterData.includes(event.target.name)) {
+        filterData.push(event.target.name);
+      }
     } else {
       span.style.backgroundColor = "white";
     }
-  };
 
-  const onSubmit = (data) => {
-    console.log(data);
+    if (!event.target.checked) {
+      const index = filterData.indexOf(event.target.name);
+      filterData.splice(index, 1);
+    }
+    console.log(filterData);
   };
 
   const animation = (variants) => {
@@ -69,14 +78,19 @@ export default function FilterOptions({ options, name }) {
       />
       <motion.div {...animation(heightVariants)} id={name} data-testid={name}>
         {options.map((option, index) => (
-          <div className="my-2 flex items-center justify-start gap-2">
+          <div
+            key={index}
+            className="my-2 flex items-center justify-start gap-2"
+          >
             <input
               className="hidden"
               type="checkbox"
               name={option}
               id={option}
-              // {...register(option)}
-              onChange={handleCheckboxChange}
+              onChange={(e) => {
+                handleCheckboxChange(e);
+                e.target.value = e.target.checked ? true : false;
+              }}
             />
             <label
               className="flex items-center justify-start gap-2 capitalize"
@@ -89,34 +103,6 @@ export default function FilterOptions({ options, name }) {
             </label>
           </div>
         ))}
-
-        {/* <form onSubmit={handleSubmit(onSubmit)}>
-          {options.map((color, index) => (
-            <div
-              key={index}
-              className="my-2 flex items-center justify-start gap-2"
-            >
-              <input
-                className="hidden"
-                type="checkbox"
-                name={color}
-                id={color}
-                {...register(color)}
-                onChange={handleCheckboxChange}
-              />
-              <label
-                className="flex items-center justify-start gap-2 capitalize"
-                htmlFor={color}
-              >
-                <div className="flex h-5 w-5 items-center justify-center rounded-full border-[1px] border-solid border-slate-900 bg-slate-50 p-1">
-                  <span className="inline-block h-full w-full rounded-full"></span>
-                </div>
-                {color}
-              </label>
-            </div>
-          ))}
-          <button type="submit">Submit</button>
-        </form> */}
       </motion.div>
     </div>
   );

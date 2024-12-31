@@ -6,6 +6,7 @@ import Homepage from "./Components/Pages/Home/Homepage";
 import { AnimatePresence } from "framer-motion";
 import { Route, Routes, useLocation } from "react-router-dom";
 import CategoryPage from "./Components/Pages/Category/CategoryPage";
+import ProductPage from "./Components/Pages/ProductPage/ProductPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,6 +28,7 @@ export default function App() {
           <Routes key={location.pathname} location={location}>
             <Route path="/" element={<Homepage />} />
             <Route path="/category" element={<CategoryPage />} />
+            <Route path="/product/:product_name" element={<ProductPage />} />
           </Routes>
         </AnimatePresence>
       </QueryClientProvider>
