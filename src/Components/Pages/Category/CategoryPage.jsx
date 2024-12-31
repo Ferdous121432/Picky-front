@@ -4,24 +4,27 @@ import Breadcum from "./Breadcum";
 import SortedBy from "./SortedBy";
 import { useQuery } from "@tanstack/react-query";
 import { motion, spring } from "framer-motion";
-import { faDisplay } from "@fortawesome/free-solid-svg-icons";
 import CategoryProducts from "./CategoryProducts";
+import Pagination from "./Pagination";
+import Filter from "../../Compents/Filter/Filter";
 
 const filterVariants = {
   hidden: {
     width: 0,
     display: "none",
+    opacity: 0,
     transition: {
-      duration: 0.5,
-      spring: 1.5,
+      duration: 0.3,
+      spring: 0.3,
     },
   },
   visible: {
     width: "100%",
     display: "block",
+    opacity: 1,
     transition: {
-      duration: 0.5,
-      spring: 10.5,
+      duration: 0.3,
+      spring: 0.3,
     },
   },
   exit: {
@@ -77,16 +80,21 @@ export default function CategoryPage() {
           {/* TODO: On click filter will slide from left to right */}
 
           <div className={`${open ? "w-full md:w-[100rem]" : ""}`}>
-            {" "}
             <motion.div
               {...animation(filterVariants)}
-              className="bg-slate-300 p-10 md:w-[60rem]"
+              className="h-full bg-slate-300 p-10 md:w-[60rem]"
             >
-              Filter
+              <div className="h-screen">
+                <Filter />
+              </div>
             </motion.div>
           </div>
-          <CategoryProducts />
+          <motion.div className="transition-all duration-500 ease-in-out">
+            <CategoryProducts />
+            <Pagination currentPage={2} totalPages={5} />
+          </motion.div>
         </div>
+        <div className="mb-20" />
       </div>
     </Layout>
   );

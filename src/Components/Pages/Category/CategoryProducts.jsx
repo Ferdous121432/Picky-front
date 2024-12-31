@@ -52,9 +52,9 @@ const products = [
 
 export default function CategoryProducts() {
   return (
-    <div className="flex w-full flex-wrap items-center justify-between gap-4 md:px-6">
+    <div className="grid w-full grid-cols-1 items-center justify-between gap-2 px-2 py-2 xs:grid-cols-2 sm:grid-cols-3 sm:py-6 md:gap-4 md:px-6 lg:grid-cols-4 xl:grid-cols-5">
       {products.map((product, index) => (
-        <div className="w-[22%]" key={index}>
+        <div className="" key={index}>
           <ProductCard
             image={product.image}
             discount={product.discount}
