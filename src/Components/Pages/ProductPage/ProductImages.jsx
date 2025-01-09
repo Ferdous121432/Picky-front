@@ -29,24 +29,25 @@ const ProductImage = [
 
 export default function ProductImages() {
   return (
-    <div className="flex gap-2 bg-slate-600">
-      <div className="grid h-full w-[10vw] grid-cols-2 items-start justify-center">
+    <div className="md:[50%] flex justify-center gap-2 p-2">
+      <div className="hidden w-[11%] max-w-[10rem] flex-col items-start justify-start gap-[1px] xs:flex md:w-[15%]">
         {ProductImage.map((item) => (
-          <div key={item.id} className="relative h-full w-[100px] p-1">
+          <div key={item.id} className="relative w-full">
             <img
-              className="h-full w-full object-contain"
+              className="w-full object-contain"
               src={item.url}
               alt="Product"
             />
           </div>
         ))}
       </div>
-      <div className="relative col-span-2 w-[500px]">
+      <div className="relative max-w-[500px] bg-red-900">
         <img
-          className="h-full w-full object-contain"
+          className="w-full object-contain"
           src="/sale/saleImgOne.webp"
           alt="Product"
         />
+        <div className="transform-middle h-16 w-full bg-slate-900"></div>
       </div>
     </div>
   );
