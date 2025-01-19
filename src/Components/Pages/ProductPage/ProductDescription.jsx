@@ -1,9 +1,10 @@
 import React from "react";
 
-export default function ProductDescription() {
+export default function ProductDescription({ description }) {
   return (
     <div>
-      <ul>
+      {description}
+      {/* <ul>
         <li>Outer Shell: Real Leather</li>
         <li>Leather Type: Goatskin</li>
         <li>Leather Finish: Rub-off</li>
@@ -14,7 +15,7 @@ export default function ProductDescription() {
         <li>Inside Pockets: Two</li>
         <li>Outside Pockets: Two</li>
         <li>Color: Distressed Brown</li>
-      </ul>
+      </ul> */}
     </div>
   );
 }

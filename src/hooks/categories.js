@@ -2,6 +2,11 @@ const url = "http://localhost:5173/category";
 
 export const categories = [
   {
+    id: 11,
+    name: "winter/24",
+    url: `${url}/sales`,
+  },
+  {
     id: 10,
     name: "sales",
     url: `${url}/sales`,

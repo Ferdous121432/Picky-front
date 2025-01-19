@@ -8,6 +8,8 @@ import ProductReviews from "./ProductReviews";
 import ShippingReturns from "./ShippingReturns";
 import SizeGuide from "./SizeGuide";
 import { useQuery } from "@tanstack/react-query";
+import { url_base } from "../../../hooks/urls";
+import { details } from "framer-motion/client";
 
 const productDetailsReviews = [
   "Description",
@@ -21,6 +23,8 @@ export default function () {
 
   const [params, setParams] = useState("");
   let { product_name } = useParams();
+  const url = `${url_base}/products/${product_name}`;
+  let productData = {};
 
   useEffect(() => {
     setParams(product_name);
@@ -39,7 +43,7 @@ export default function () {
     }
     const data = await response.json();
     apiCache[url] = data;
-    console.log(apiCache);
+
     return data;
   };
 
@@ -51,17 +55,17 @@ export default function () {
     queryKey: [params],
     queryFn: fetchProducts,
   });
+  productData = products?.data?.data;
+  console.log(productData);
 
-  useEffect(() => {
-    console.log(productDetails);
-  }, [productDetails]);
+  if (isLoading) return "Loading...";
 
   const renderProductDetails = () => {
     switch (productDetails) {
       case 0:
-        return <ProductDescription />;
+        return <ProductDescription description={productData.description} />;
       case 1:
-        return <ProductReviews />;
+        return <ProductReviews reviews={productData.reviews} />;
       case 2:
         return <ShippingReturns />;
       case 3:
@@ -78,8 +82,8 @@ export default function () {
           {/* Top Part : Product Images and Header Details */}
           <div className="mx-auto mt-4 flex max-w-[1400px] justify-center md:items-center">
             <div className="flex w-screen flex-col justify-center gap-2 md:flex-row">
-              <ProductImages />
-              <ProductHeaderDetails />
+              <ProductImages images={productData.images} />
+              <ProductHeaderDetails details={productData} />
             </div>
             <div></div>
           </div>

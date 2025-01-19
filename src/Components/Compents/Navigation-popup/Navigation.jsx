@@ -2,7 +2,7 @@
 
 import React from "react";
 import FlyoutLink from "./FlyoutLink";
-import { categories } from "../../../Asset/categories";
+import { categories } from "../../../hooks/categories";
 
 export default function Navigation() {
   return (

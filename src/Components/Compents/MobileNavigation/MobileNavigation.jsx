@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { categories } from "../../../Asset/categories";
+import { categories } from "../../../hooks/categories";
 import MobileCategory from "./MobileCategory";
 import {
   navCatList,
