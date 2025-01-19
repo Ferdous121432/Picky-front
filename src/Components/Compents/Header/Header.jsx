@@ -3,8 +3,6 @@ import TopHeader from "./TopHeader";
 import MiddleHeader from "./MiddleHeader";
 import Navigation from "../Navigation-popup/Navigation";
 import { delay, motion, useScroll } from "framer-motion";
-import zIndex from "@mui/material/styles/zIndex";
-import MobileHeader from "../MobileHeaderFooter/MobileHeader";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);

@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBangladeshiTakaSign } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping, faEye } from "@fortawesome/free-solid-svg-icons";
 
+import { ProductImage } from "../../../Asset/Image/productimage/ProductImage";
+
 import { AnimatePresence, motion } from "framer-motion";
 
 const ProductCard = ({
@@ -37,6 +39,8 @@ const ProductCard = ({
     exit: { opacity: 0, y: 100, transition: { duration: 1 } },
   };
 
+  const ProductImages = ProductImage;
+
   return (
     <AnimatePresence mode="wait">
       <article
@@ -48,7 +52,8 @@ const ProductCard = ({
           <div className="relative z-0">
             <img
               loading="lazy"
-              src={image}
+              // src={image}
+              src={ProductImages[0].src}
               alt={name}
               className="aspect-square"
             />

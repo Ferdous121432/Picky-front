@@ -1,6 +1,3 @@
-import { duration } from "@mui/material";
-import { del, s } from "framer-motion/client";
-
 export const navMobile = {
   hidden: {
     x: "-100%",

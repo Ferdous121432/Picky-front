@@ -5,6 +5,7 @@ import TopHeader from "./TopHeader";
 import HeaderAccBar from "./HeaderAccBar";
 import CallUsNow from "./CallUsNow";
 import MaxWidth81 from "../../Utils/MaxWidth81";
+import { Link } from "react-router-dom";
 
 export default function MiddleHeader() {
   return (
@@ -12,6 +13,7 @@ export default function MiddleHeader() {
       <MaxWidth81>
         <div className="flex gap-[5rem] py-4">
           <Logo />
+
           <div className="flex w-full justify-start lg:gap-10">
             <SearchBar />
             <div className="flex w-full justify-end gap-10">

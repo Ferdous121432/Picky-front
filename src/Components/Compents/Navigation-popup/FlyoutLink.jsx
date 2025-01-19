@@ -49,7 +49,21 @@ export default function FlyoutLink({
 
   const renderFlyoutContent = () => {
     switch (flyoutContent) {
-      case "home":
+      case "sales":
+        return <Projects />;
+      case "new arrivals":
+        return <Projects />;
+      case "men":
+        return <Projects />;
+      case "women":
+        return <Projects />;
+      case "kids":
+        return <Projects />;
+      case "newborn":
+        return <Projects />;
+      case "accessories":
+        return <Projects />;
+      case "footwear":
         return <Projects />;
 
       default:

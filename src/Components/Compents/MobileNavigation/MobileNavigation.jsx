@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { i, use } from "framer-motion/client";
-
+import { categories } from "../../../Asset/categories";
 import MobileCategory from "./MobileCategory";
 import {
   navCatList,
@@ -12,44 +8,6 @@ import {
   navMobile,
 } from "../../Utils/MobileNavAnimation";
 import { AnimatePresence, delay, motion, stagger } from "framer-motion";
-
-const categoryList = [
-  {
-    id: 1,
-    name: "SALE",
-    to: "#",
-  },
-  {
-    id: 2,
-    name: "MEN",
-    to: "#",
-  },
-  {
-    id: 3,
-    name: "WOMEN",
-    to: "#",
-  },
-  {
-    id: 4,
-    name: "KIDS",
-    to: "#",
-  },
-  {
-    id: 5,
-    name: "NEWBORN",
-    to: "#",
-  },
-  {
-    id: 6,
-    name: "ACCESSORIES",
-    to: "#",
-  },
-  {
-    id: 7,
-    name: "FOOTWEAR",
-    to: "#",
-  },
-];
 
 export default function MobileNavigation({ navOpen, setNavOpen }) {
   const [open, setOpen] = useState(null);
@@ -88,9 +46,7 @@ export default function MobileNavigation({ navOpen, setNavOpen }) {
   };
 
   const handleClick = () => {
-    // setNavOpen(false);
     setOpen(false);
-    console.log("ssssssssss");
   };
 
   return (
@@ -103,7 +59,7 @@ export default function MobileNavigation({ navOpen, setNavOpen }) {
               className="flex h-screen w-screen flex-col items-center justify-center bg-slate-800"
             >
               <div className="mt-4 flex w-[60%] flex-col justify-start gap-3">
-                {categoryList.map((category) => (
+                {categories.map((category) => (
                   <div
                     onClick={() => handleOpen(category.id)}
                     className="flex items-center justify-center bg-slate-50"
@@ -112,7 +68,7 @@ export default function MobileNavigation({ navOpen, setNavOpen }) {
                       clipPath: "polygon(2% 0, 100% 0, 98% 100%, 0 100%)",
                     }}
                   >
-                    <p className="px-2 py-1">{category.name}</p>
+                    <p className="px-2 py-1 uppercase">{category.name}</p>
                   </div>
                 ))}
               </div>
@@ -130,7 +86,7 @@ export default function MobileNavigation({ navOpen, setNavOpen }) {
                 {...animation(navCategory)}
                 className="flex h-screen w-screen flex-col items-center justify-center bg-yellow-800"
               >
-                ddddd
+                {renderMobileNavCategory()}
                 <button onClick={handleClick}>dd</button>
                 {/*Back & Close Button */}
                 <div className="absolute bottom-0 mb-[56px] flex w-screen flex-row bg-slate-900 text-slate-50">

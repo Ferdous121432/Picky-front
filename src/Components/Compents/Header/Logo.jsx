@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const svgIconVariants = {
   hidden: {
@@ -16,7 +17,7 @@ const svgIconVariants = {
 
 export default function Logo() {
   return (
-    <div>
+    <Link to="/">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -198,6 +199,6 @@ export default function Logo() {
           </g>
         </g>
       </svg>
-    </div>
+    </Link>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Layout from "../../Utils/Layout";
 import ProductImages from "./ProductImages";
 import ProductHeaderDetails from "./ProductHeaderDetails";
@@ -6,6 +7,7 @@ import ProductDescription from "./ProductDescription";
 import ProductReviews from "./ProductReviews";
 import ShippingReturns from "./ShippingReturns";
 import SizeGuide from "./SizeGuide";
+import { useQuery } from "@tanstack/react-query";
 
 const productDetailsReviews = [
   "Description",
@@ -16,6 +18,40 @@ const productDetailsReviews = [
 
 export default function () {
   const [productDetails, setProductDetails] = useState(0);
+
+  const [params, setParams] = useState("");
+  let { product_name } = useParams();
+
+  useEffect(() => {
+    setParams(product_name);
+    console.log(product_name);
+  }, [product_name]);
+
+  const apiCache = {};
+
+  const fetchProducts = async () => {
+    if (apiCache[url]) {
+      return apiCache[url];
+    }
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    apiCache[url] = data;
+    console.log(apiCache);
+    return data;
+  };
+
+  const {
+    isLoading,
+    data: products,
+    error,
+  } = useQuery({
+    queryKey: [params],
+    queryFn: fetchProducts,
+  });
+
   useEffect(() => {
     console.log(productDetails);
   }, [productDetails]);

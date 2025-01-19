@@ -25,7 +25,6 @@ export default function SortedBy() {
             name={option}
             id={option}
             value={option}
-            defaultChecked={selectedOption === option}
             checked={selectedOption === option}
             onChange={handleCheckboxChange}
           />

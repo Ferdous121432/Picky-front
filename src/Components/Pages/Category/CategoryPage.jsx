@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import Layout from "../../Utils/Layout";
 import Breadcum from "./Breadcum";
 import SortedBy from "./SortedBy";
@@ -7,6 +8,8 @@ import { motion, spring } from "framer-motion";
 import CategoryProducts from "./CategoryProducts";
 import Pagination from "./Pagination";
 import Filter from "../../Compents/Filter/Filter";
+import { data } from "autoprefixer";
+import { set } from "react-hook-form";
 
 const filterVariants = {
   hidden: {
@@ -46,19 +49,52 @@ const productVariants = {
 
 export default function CategoryPage() {
   const [open, setOpen] = useState(false);
+  const [params, setParams] = useState("");
+  let { category_name } = useParams();
+
+  useEffect(() => {
+    setParams(category_name);
+    console.log(category_name);
+  }, [category_name]);
+
+  let url = `http://localhost:3000/api/v1/categories/${params}`;
+
+  // const fetchProducts = async () => {
+  //   const response = await fetch(url);
+  //   if (!response.ok) {
+  //     throw new Error("Network response was not ok");
+  //   }
+  //   return response.json();
+  // };
+
+  //TODO: Cache API data
+
+  const apiCache = {};
+
+  const fetchProducts = async () => {
+    if (apiCache[url]) {
+      return apiCache[url];
+    }
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    apiCache[url] = data;
+    console.log(apiCache);
+    return data;
+  };
 
   const {
     isLoading,
     data: products,
     error,
   } = useQuery({
-    queryKey: ["products"],
-    queryFn: () => {
-      return fetch(
-        "https://shopperoo-backend.vercel.app/api/v1/products?name=Platinum Saudi Thobe&page=2&limit=4&sort=-1,price",
-      ).then((res) => res.json());
-    },
+    queryKey: [params],
+    queryFn: fetchProducts,
   });
+
+  console.log(data);
 
   const animation = (variants) => {
     return {
@@ -90,7 +126,7 @@ export default function CategoryPage() {
             </motion.div>
           </div>
           <motion.div className="transition-all duration-500 ease-in-out">
-            <CategoryProducts />
+            <CategoryProducts link={params} />
             <Pagination currentPage={2} totalPages={5} />
           </motion.div>
         </div>
