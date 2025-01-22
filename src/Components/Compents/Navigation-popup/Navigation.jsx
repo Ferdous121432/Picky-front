@@ -3,6 +3,7 @@
 import React from "react";
 import FlyoutLink from "./FlyoutLink";
 import { categories } from "../../../hooks/categories";
+import { div } from "framer-motion/client";
 
 export default function Navigation() {
   return (
@@ -10,14 +11,16 @@ export default function Navigation() {
       {/* <MaxWidth81> */}
       <div className="hidden w-full max-w-[81.25rem] items-center justify-between px-10 py-4 font-semibold uppercase lg:flex">
         {categories.map((category, index) => (
-          <FlyoutLink
-            key={index}
-            link={category.url}
-            flyoutContent={category.name}
-            // lastChild={index === categories.length - 1}
-          >
-            {category.name}
-          </FlyoutLink>
+          <div className="flex items-center justify-center" key={index}>
+            <FlyoutLink
+              key={index}
+              link={category.url}
+              flyoutContent={category.name}
+              // lastChild={index === categories.length - 1}
+            >
+              {category.name}
+            </FlyoutLink>
+          </div>
         ))}
       </div>
       {/* </MaxWidth81> */}

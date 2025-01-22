@@ -2,6 +2,7 @@ import React from "react";
 import ProductCard from "../../Compents/ProductCard/ProductCard";
 import { div } from "framer-motion/client";
 import { Link } from "react-router-dom";
+import { front_url } from "../../../hooks/urls";
 
 const products = [
   {
@@ -51,16 +52,16 @@ const products = [
   },
 ];
 
-export default function CategoryProducts({ link }) {
-  const url = window.location.origin;
-  console.log(url);
+export default function CategoryProducts({ category_products }) {
+  const products = category_products || [];
+  console.log(products);
   return (
     <div className="grid w-full grid-cols-1 items-center justify-between gap-2 px-2 py-2 xs:grid-cols-2 sm:grid-cols-3 sm:py-6 md:gap-4 md:px-6 lg:grid-cols-4 xl:grid-cols-5">
       {products.map((product, index) => (
         <div className="" key={index}>
-          <Link to={`${url}/product/${product.name}`}>
+          <Link to={`${front_url}/product/${product.slug}`}>
             <ProductCard
-              image={product.image}
+              image={product.imageCover}
               discount={product.discount}
               newProduct={product.newProduct}
               name={product.name}

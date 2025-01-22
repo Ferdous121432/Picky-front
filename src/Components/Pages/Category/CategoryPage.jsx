@@ -9,55 +9,24 @@ import CategoryProducts from "./CategoryProducts";
 import Pagination from "./Pagination";
 import Filter from "../../Compents/Filter/Filter";
 import { data } from "autoprefixer";
-import { set } from "react-hook-form";
+import { url_productsCategory } from "../../../hooks/urls";
 
-const filterVariants = {
-  hidden: {
-    width: 0,
-    display: "none",
-    opacity: 0,
-    transition: {
-      duration: 0.3,
-      spring: 0.3,
-    },
-  },
-  visible: {
-    width: "100%",
-    display: "block",
-    opacity: 1,
-    transition: {
-      duration: 0.3,
-      spring: 0.3,
-    },
-  },
-  exit: {
-    width: 0,
-  },
-};
-
-const productVariants = {
-  hidden: {
-    width: "100%",
-  },
-  visible: {
-    width: 0,
-  },
-  exit: {
-    width: "100%",
-  },
-};
+import {
+  filterVariants,
+  productVariants,
+  animation,
+} from "../../Utils/AnimationHooks/CategoryPageAnimation";
 
 export default function CategoryPage() {
   const [open, setOpen] = useState(false);
   const [params, setParams] = useState("");
   let { category_name } = useParams();
+  const url = `${url_productsCategory}/all`;
 
   useEffect(() => {
     setParams(category_name);
     console.log(category_name);
   }, [category_name]);
-
-  let url = `http://localhost:3000/api/v1/categories/${params}`;
 
   // const fetchProducts = async () => {
   //   const response = await fetch(url);
@@ -72,16 +41,11 @@ export default function CategoryPage() {
   const apiCache = {};
 
   const fetchProducts = async () => {
-    if (apiCache[url]) {
-      return apiCache[url];
-    }
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    apiCache[url] = data;
-    console.log(apiCache);
     return data;
   };
 
@@ -93,17 +57,8 @@ export default function CategoryPage() {
     queryKey: [params],
     queryFn: fetchProducts,
   });
-
-  console.log(data);
-
-  const animation = (variants) => {
-    return {
-      initial: "hidden",
-      animate: open === true ? "visible" : "hidden",
-      exit: "exit",
-      variants,
-    };
-  };
+  const category_products = products?.data?.products;
+  console.log(category_products);
 
   return (
     <Layout>
@@ -126,7 +81,7 @@ export default function CategoryPage() {
             </motion.div>
           </div>
           <motion.div className="transition-all duration-500 ease-in-out">
-            <CategoryProducts link={params} />
+            <CategoryProducts category_products={category_products} />
             <Pagination currentPage={2} totalPages={5} />
           </motion.div>
         </div>
