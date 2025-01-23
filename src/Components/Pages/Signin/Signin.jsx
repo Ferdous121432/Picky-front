@@ -11,7 +11,7 @@ export default function Signin() {
   return (
     <div>
       <Layout>
-        {/* {state.isAuthenticated && <Navigate to="/userprofile" />} */}
+        {state.isAuthenticated && <Navigate to="/userprofile" />}
         <main className="m-auto mb-12 mt-6 flex w-full max-w-full flex-col items-center justify-start self-center">
           <SignInForm />
           <Divider text="New to our community" />

@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import Layout from "../../Utils/Layout";
 import ProductImages from "./ProductImages";
 import ProductHeaderDetails from "./ProductHeaderDetails";
 import ProductDescription from "./ProductDescription";
 import ProductReviews from "./ProductReviews";
 import ShippingReturns from "./ShippingReturns";
+import ErrorPage from "../ErrorPage/ErrorPage";
 import SizeGuide from "./SizeGuide";
-import { useQuery } from "@tanstack/react-query";
+import SpinnerFullPage from "../../Compents/Spinner/SpinnerFullPage";
+
 import { url_base } from "../../../hooks/urls";
-import { details } from "framer-motion/client";
+import useQueryHook from "../../../hooks/useQueryHook";
 
 const productDetailsReviews = [
   "Description",
@@ -31,28 +34,22 @@ export default function () {
     console.log(product_name);
   }, [product_name]);
 
-  const fetchProducts = async () => {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    const data = await response.json();
-    return data;
-  };
-
   const {
     isLoading,
+    isFetching,
     data: products,
     error,
-  } = useQuery({
-    queryKey: [params],
-    queryFn: fetchProducts,
-  });
+    isError,
+  } = useQueryHook(params, url);
   productData = products?.data?.data;
   console.log(productData);
 
-  if (isLoading) return "Loading...";
-  if (error) return "An error has occurred: " + error.message;
+  if (isFetching) return <SpinnerFullPage />;
+
+  if (isError) {
+    console.log(error);
+    return <ErrorPage />;
+  }
 
   const renderProductDetails = () => {
     switch (productDetails) {

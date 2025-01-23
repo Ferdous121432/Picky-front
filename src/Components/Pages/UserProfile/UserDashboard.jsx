@@ -9,7 +9,7 @@ import UserDetails from "./UserDetails";
 import UserOrders from "./UserOrders";
 import Layout from "../../Utils/Layout";
 import { getOrdersByUser } from "../../../hooks/order";
-import SpinnerFullPage from "../../Compents/SpinnerFullPage";
+import SpinnerFullPage from "../../Compents/Spinner/SpinnerFullPage";
 import EditProfile from "./EditProfile";
 
 const UserDashboard = () => {
@@ -145,7 +145,13 @@ const UserDashboard = () => {
         />
       </div>
       <div className="flex w-full justify-center">
-        <Button handleClick={handleLogout}>Logout</Button>
+        <Button
+          hover="hover:bg-slate-800 hover:font-bold  hover:text-slate-200  "
+          color="text-slate-50 bg-slate-900 lg:max-w-[800px] w-full "
+          handleClick={handleLogout}
+        >
+          Logout
+        </Button>
       </div>
     </div>
   );

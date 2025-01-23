@@ -1,64 +1,66 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+
+import { motion, spring } from "framer-motion";
+import useQueryHook from "../../../hooks/useQueryHook";
+
+import { url_productsCategory } from "../../../hooks/urls";
+import SpinnerFullPage from "../../Compents/Spinner/SpinnerFullPage";
 import Layout from "../../Utils/Layout";
 import Breadcum from "./Breadcum";
 import SortedBy from "./SortedBy";
-import { useQuery } from "@tanstack/react-query";
-import { motion, spring } from "framer-motion";
 import CategoryProducts from "./CategoryProducts";
 import Pagination from "./Pagination";
 import Filter from "../../Compents/Filter/Filter";
-import { data } from "autoprefixer";
-import { url_productsCategory } from "../../../hooks/urls";
 
 import {
   filterVariants,
   productVariants,
   animation,
 } from "../../Utils/AnimationHooks/CategoryPageAnimation";
+import ErrorPage from "../ErrorPage/ErrorPage";
+import { nav } from "framer-motion/client";
 
 export default function CategoryPage() {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(2);
   const [params, setParams] = useState("");
   let { category_name } = useParams();
-  const url = `${url_productsCategory}/all`;
+
+  const url = `${url_productsCategory}/all?page=${page}&limit=${limit}`;
+
+  const searchParams = new URLSearchParams(window.location.search);
+  const initialPage = searchParams.get("page");
+  const initialLimit = searchParams.get("limit");
+
+  useEffect(() => {
+    if (initialPage) setPage(Number(initialPage));
+    if (initialLimit) setLimit(Number(initialLimit));
+  }, []);
+
+  useEffect(() => {
+    navigate(`/category/${category_name}?page=${page}&limit=${limit}`);
+  }, [page, limit, navigate, category_name]);
 
   useEffect(() => {
     setParams(category_name);
-    console.log(category_name);
   }, [category_name]);
-
-  // const fetchProducts = async () => {
-  //   const response = await fetch(url);
-  //   if (!response.ok) {
-  //     throw new Error("Network response was not ok");
-  //   }
-  //   return response.json();
-  // };
-
-  //TODO: Cache API data
-
-  const apiCache = {};
-
-  const fetchProducts = async () => {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    const data = await response.json();
-    return data;
-  };
 
   const {
     isLoading,
+    isFetching,
+    status,
     data: products,
     error,
-  } = useQuery({
-    queryKey: [params],
-    queryFn: fetchProducts,
-  });
+  } = useQueryHook(params, url);
+
   const category_products = products?.data?.products;
   console.log(category_products);
+
+  if (isFetching) return <SpinnerFullPage />;
+  if (error) return <ErrorPage />;
 
   return (
     <Layout>
@@ -82,7 +84,12 @@ export default function CategoryPage() {
           </div>
           <motion.div className="transition-all duration-500 ease-in-out">
             <CategoryProducts category_products={category_products} />
-            <Pagination currentPage={2} totalPages={5} />
+            <Pagination
+              page={page}
+              setPage={setPage}
+              currentPage={products?.currentPage}
+              totalPages={products?.pageNumbers}
+            />
           </motion.div>
         </div>
         <div className="mb-20" />

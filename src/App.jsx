@@ -11,7 +11,7 @@ import CategoryPage from "./Components/Pages/Category/CategoryPage";
 import ProductPage from "./Components/Pages/ProductPage/ProductPage";
 import Signup from "./Components/Pages/Signup/Signup";
 import Signin from "./Components/Pages/Signin/Signin";
-import Cart from "./Components/Pages/Card/Cart";
+import Cart from "./Components/Pages/Cart/Cart";
 import About from "./Components/Pages/About/About";
 import ContactUs from "./Components/Pages/ContactUs/ContactUs";
 import Favorite from "./Components/Pages/Favorite/Favorite";
@@ -21,9 +21,17 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false, // Disable refetch on window focus
-      staleTime: 1000 * 60 * 15, // 15 minutes
+      refetchOnMount: true, // Refetch on mount if URL changes
+      staleTime: 1000 * 60 * 5, // 15 minutes
       retry: 1, // Retry failed requests once
       retryDelay: 30000, // Retry after 30 seconds
+      networkTimeout: 20000, // Set error if loading time exceeds 20 seconds
+
+      cacheTime: 1000 * 60 * 0, // 30 minutes
+      onError: (error) => {
+        toast.error(`Error: ${error.message}`);
+        console.log(error);
+      },
     },
   },
 });

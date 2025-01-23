@@ -12,7 +12,7 @@ export default function Button({
     <button
       onClick={handleClick}
       disabled={disabled}
-      className={`rounded border-0 px-8 py-4 text-xl font-semibold capitalize hover:bg-slate-200 focus:outline-none ${width ? `w-${width}` : ""} ${color ? color : ""} ${hover ? hover : ""} `}
+      className={`border-0 px-8 py-4 text-xl font-semibold capitalize hover:bg-slate-200 focus:outline-none ${width ? `w-${width}` : ""} ${color ? color : ""} ${hover ? hover : ""} `}
     >
       {children}
     </button>

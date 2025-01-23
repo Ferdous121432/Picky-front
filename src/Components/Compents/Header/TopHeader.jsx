@@ -1,7 +1,22 @@
 import React from "react";
 import MaxWidth81 from "../../Utils/MaxWidth81";
+import { useAuth } from "../../../context/AuthProvider";
+import { useLocation } from "react-router-dom";
 
 export default function TopHeader() {
+  const { state, dispatch, logout } = useAuth();
+
+  const location = useLocation();
+  console.log(location.pathname);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    logout();
+    window.location.href =
+      location.pathname !== "/userprofile"
+        ? `/${location.pathname}`
+        : "/signin";
+  };
   return (
     <div className="flex flex-col items-center justify-center">
       <div>
@@ -14,10 +29,14 @@ export default function TopHeader() {
           <p>Picky Life</p>
           <div>
             <ul className="flex justify-center gap-4">
-              <li>
-                <a href="/logout" className="">
-                  Logout
-                </a>
+              <li className="hover:cursor-pointer hover:font-semibold hover:text-slate-950">
+                {state.isAuthenticated ? (
+                  <div onClick={handleLogout}>Logout</div>
+                ) : (
+                  <div>
+                    <a href="/signin">Log in</a>
+                  </div>
+                )}
               </li>
               <li>
                 <a href="/about-us" className="">
@@ -25,18 +44,13 @@ export default function TopHeader() {
                 </a>
               </li>
               <li>
-                <a href="/wishlist" className="">
+                <a href="/favorites" className="">
                   My Wishlist
                 </a>
               </li>
               <li>
                 <a href="/cart" className="">
                   Cart
-                </a>
-              </li>
-              <li>
-                <a href="/compare" className="">
-                  Compare (0)
                 </a>
               </li>
             </ul>

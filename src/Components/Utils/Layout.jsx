@@ -21,7 +21,7 @@ export default function Layout({ children }) {
       {navOpen && (
         <MobileNavigation navOpen={navOpen} setNavOpen={setNavOpen} />
       )}
-      <div>{children}</div>
+      <div className="min-h-[70vh]">{children}</div>
       <Footer />
       <MobileFooter />
     </div>
