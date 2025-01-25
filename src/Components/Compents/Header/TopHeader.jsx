@@ -1,7 +1,7 @@
 import React from "react";
 import MaxWidth81 from "../../Utils/MaxWidth81";
 import { useAuth } from "../../../context/AuthProvider";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 export default function TopHeader() {
   const { state, dispatch, logout } = useAuth();
@@ -14,9 +14,14 @@ export default function TopHeader() {
     logout();
     window.location.href =
       location.pathname !== "/userprofile"
-        ? `/${location.pathname}`
-        : "/signin";
+        ? Navigate("/")
+        : Navigate("/signin");
   };
+
+  if (!state.isAuthenticated && location.pathname === "/userprofile") {
+    return <Navigate to="/signin" />;
+  }
+
   return (
     <div className="flex flex-col items-center justify-center">
       <div>

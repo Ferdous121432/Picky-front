@@ -176,7 +176,7 @@ export const AuthProvider = ({ children }) => {
   // Fetch the user's data when the token changes and it will ensure whether page is authenticated or not and fetch the user data
   useEffect(() => {
     const fetchUserData = async () => {
-      // dispatch({ type: "LOADING" });
+      dispatch({ type: "LOADING" });
       if (state.token) {
         try {
           const userdata = await axios.get(`${baseURL}/${userURL}`, {

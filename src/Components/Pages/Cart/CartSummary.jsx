@@ -6,7 +6,7 @@ import Constants from "../../../../constants";
 
 const CartSummary = ({ subtotal, total, handleCheckout }) => {
   return (
-    <div className="mx-auto flex w-full flex-col bg-orange-50 px-20 pb-20 pt-4 max-md:mt-10 max-md:px-5">
+    <div className="mx-auto flex w-full flex-col bg-slate-200 px-20 pb-20 pt-4 max-md:mt-10 max-md:px-5">
       <h2 className="self-center text-3xl font-semibold text-black">
         Cart Totals
       </h2>

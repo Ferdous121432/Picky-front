@@ -316,8 +316,8 @@ export default function EditProfile({ user, setEditProfile }) {
       <div className="flex w-full max-w-[800px] flex-col gap-4 justify-self-center py-4 sm:flex-row">
         <div className="w-full sm:w-1/2">
           <Button
-            width={"full"}
-            color={Constants.YELLOW_PRIMARY}
+            hover="hover:bg-slate-800 hover:font-bold  hover:text-slate-200  "
+            color="text-slate-50 bg-slate-900 lg:max-w-[800px] w-full "
             disabled={state.loading}
             type="submit"
           >
@@ -326,8 +326,8 @@ export default function EditProfile({ user, setEditProfile }) {
         </div>
         <div className="w-full sm:w-1/2">
           <Button
-            width={"full"}
-            color={Constants.YELLOW_PRIMARY}
+            hover="hover:bg-slate-800 hover:font-bold  hover:text-slate-200  "
+            color="text-slate-50 bg-slate-900 lg:max-w-[800px] w-full "
             handleClick={() => setEditProfile(false)}
             disabled={state.loading}
           >

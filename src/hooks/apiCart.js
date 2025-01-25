@@ -55,11 +55,15 @@ export const deleteFromCart = async (cartItem, token) => {
 //TODO: After updating cart item, the cart page should be updated with the new data
 export const getCart = async (token) => {
   try {
-    const response = await axios.get(`${baseURL}/${carItemsURL}`, {
+    const response = await fetch.get(`${baseURL}/${carItemsURL}`, {
+      method: "GET",
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify(credentials),
     });
+
     console.log(response);
     if (response.status === 200) {
       return response.data;

@@ -3,16 +3,16 @@ import React from "react";
 
 export default function CartItemHeader() {
   return (
-    <div className="flex flex-col justify-center items-center px-16 py-4 w-full text-base font-medium text-black whitespace-nowrap bg-orange-50 max-md:px-5 max-md:max-w-full">
-      <div className="flex flex-wrap gap-5 justify-between max-w-full w-[529px]">
-        <div>Product</div>
-        <div>Price</div>
-        <div className="flex gap-9">
-          <div>Quantity</div>
-          <div>Subtotal</div>
-          <div>Subtotal</div>
-        </div>
-      </div>
-    </div>
+    <table className="flex w-full flex-col items-center justify-center whitespace-nowrap bg-slate-200 px-16 py-4 font-medium text-slate-800 md:max-w-full md:px-5">
+      <thead className="flex w-full min-w-[529px] max-w-full flex-wrap justify-between gap-5">
+        <tr className="flex w-full justify-between">
+          <th>Image</th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+    </table>
   );
 }

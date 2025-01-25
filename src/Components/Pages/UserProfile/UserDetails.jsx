@@ -75,17 +75,20 @@ export default function UserDetails({ handleEditProfile }) {
       <div className="z-10 bg-red-100"></div>
 
       <div className="flex flex-col justify-center gap-4 py-4 sm:flex-row">
-        <div className="w-full sm:w-1/2">
+        <div className="w-full">
           <Button
             handleClick={handleEditProfile}
-            width={"full"}
-            color={Constants.YELLOW_PRIMARY}
+            hover="hover:bg-slate-800 hover:font-bold  hover:text-slate-200  "
+            color="text-slate-50 bg-slate-900 lg:max-w-[800px] w-full "
           >
             Edit Profile
           </Button>
         </div>
-        <div className="w-full sm:w-1/2">
-          <Button width={"full"} color={Constants.YELLOW_PRIMARY}>
+        <div className="w-full">
+          <Button
+            hover="hover:bg-slate-800 hover:font-bold  hover:text-slate-200  "
+            color="text-slate-50 bg-slate-900 lg:max-w-[800px] w-full "
+          >
             Change Password
           </Button>
         </div>
