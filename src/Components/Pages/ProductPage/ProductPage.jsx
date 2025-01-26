@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import Layout from "../../Utils/Layout";
 import ProductImages from "./ProductImages";
@@ -13,6 +14,8 @@ import SpinnerFullPage from "../../Compents/Spinner/SpinnerFullPage";
 
 import { url_base } from "../../../hooks/urls";
 import useQueryHook from "../../../hooks/useQueryHook";
+import { queryAddCart } from "../../../hooks/queryCartHook";
+import { useAuth } from "../../../context/AuthProvider";
 
 const productDetailsReviews = [
   "Description",
@@ -23,11 +26,20 @@ const productDetailsReviews = [
 
 export default function () {
   const [productDetails, setProductDetails] = useState(0);
+  const { state } = useAuth();
 
   const [params, setParams] = useState("");
   let { product_name } = useParams();
   const url = `${url_base}/products/${product_name}`;
   let productData = {};
+  let add_cart_data = {
+    cartID: "66ebf95e087bdf0a82738427",
+    product_id: "678e62b138e910dea9492ee9",
+    quantity: 8,
+    productName: "denim Shirt",
+    price: 1000,
+    image: "product-864634-1737660952643-cover-image.jpeg",
+  };
 
   useEffect(() => {
     setParams(product_name);
@@ -43,6 +55,24 @@ export default function () {
   } = useQueryHook(params, url);
   productData = products?.data?.data;
   console.log(productData);
+
+  const url_add_cart = `${url_base}/cartitems`;
+
+  const handleAddToCart = async () => {
+    if (!errorAddCart) {
+      toast.success("Item added to cart");
+    } else {
+      toast.error("Failed to add item to cart");
+    }
+  };
+
+  const {
+    data: addCart,
+    isFetching: addCartFetching,
+    isFetched,
+    status,
+    isError: errorAddCart,
+  } = queryAddCart("AddCart", url_add_cart, add_cart_data, state.token);
 
   if (isFetching) return <SpinnerFullPage />;
 
@@ -75,7 +105,10 @@ export default function () {
             <div className="mx-auto mt-4 flex max-w-[1400px] justify-center md:items-center">
               <div className="flex w-screen flex-col justify-center gap-2 md:flex-row">
                 <ProductImages images={productData.images} />
-                <ProductHeaderDetails details={productData} />
+                <ProductHeaderDetails
+                  handleAddToCart={handleAddToCart}
+                  details={productData}
+                />
               </div>
               <div></div>
             </div>

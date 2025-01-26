@@ -1,6 +1,7 @@
 /* eslint-disable */
 import Layout from "../../Utils/Layout";
 import React from "react";
+import { useState } from "react";
 
 import CartItem from "./CartItem";
 import CartSummary from "./CartSummary";
@@ -17,58 +18,42 @@ import useQueryHook from "../../../hooks/useQueryHook";
 import { baseURL, mycartURL } from "../../../hooks/apiURL";
 import { useQuery } from "@tanstack/react-query";
 import { Navigate } from "react-router-dom";
+import { queryGetCart } from "../../../hooks/queryCartHook";
 
 const Cart = () => {
   const cart_url = `${baseURL}/${mycartURL}`;
 
   const { state } = useAuth();
 
-  // Fetch cart items with useQuery
-  const fetchCart = async () => {
-    const response = await fetch(cart_url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${state.token}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-
-    const data = await response.json();
-    return data;
-  };
-
   const {
     data: myCart,
     isLoading,
+    isFetching,
     status,
     isError,
-  } = useQuery({
-    queryKey: ["cart", state.token],
-    queryFn: fetchCart,
-    refetchOnMount: true,
-    enabled: !!state.token,
-  });
+  } = queryGetCart("cart", cart_url, state.token);
 
   const carts = myCart?.data?.cartItems;
-  const totalPrice = myCart?.data?.totalPrice;
+
+  //TODO: Calculate total price
+  const totalPrice = myCart?.data?.cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0,
+  );
   console.log(carts);
 
   // console.log(carts.length);
 
   const handleCheckout = () => {
-    makeMultiplePayments(cart, state.token);
+    makeMultiplePayments(carts, state.token);
   };
+
+  if (isFetching) {
+    return <SpinnerFullPage />;
+  }
 
   if (!state.isAuthenticated) {
     return <LoginAgain />;
-  }
-
-  if (isLoading) {
-    return <SpinnerFullPage />;
   }
 
   if (isError) {

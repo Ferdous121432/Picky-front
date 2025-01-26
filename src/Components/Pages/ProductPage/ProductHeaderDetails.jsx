@@ -25,7 +25,7 @@ const sizes = [
   },
 ];
 
-export default function ProductHeaderDetails({ details }) {
+export default function ProductHeaderDetails({ details, handleAddToCart }) {
   const discount = details.old_price
     ? `${Math.floor(((details.old_price - details.price) / details.old_price) * 100)}`
     : "";
@@ -66,7 +66,7 @@ export default function ProductHeaderDetails({ details }) {
           ))}
         </div>
         <div className="mt-4 flex items-center justify-start gap-4">
-          <AddToCard />
+          <AddToCard handleAddToCart={handleAddToCart} />
           <FavButton />
         </div>
       </div>
