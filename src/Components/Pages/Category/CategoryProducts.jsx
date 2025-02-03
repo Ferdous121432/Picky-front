@@ -1,8 +1,6 @@
 import React from "react";
 import ProductCard from "../../Compents/ProductCard/ProductCard";
-import { div } from "framer-motion/client";
 import { Link } from "react-router-dom";
-import { front_url } from "../../../hooks/urls";
 
 const products = [
   {
