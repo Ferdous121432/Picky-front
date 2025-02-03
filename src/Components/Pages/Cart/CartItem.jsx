@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
@@ -9,9 +9,11 @@ import { handleDeleteHook } from "../../../hooks/carthook";
 import { queryUpdateCart } from "../../../hooks/queryCartHook";
 import { baseURL, carItemsURL } from "../../../hooks/apiURL";
 import { div, q } from "framer-motion/client";
+import { Link } from "react-router-dom";
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, setItemNum, setItemDeleted }) => {
   const [itemQuantity, setQuantity] = useState(item.quantity);
+  const controllerRef = useRef();
   const { state } = useAuth();
   const { token } = state;
   const url_update_cart = `${baseURL}/${carItemsURL}/${item._id}`;
@@ -19,19 +21,24 @@ const CartItem = ({ item }) => {
   // TODO: DELETE
   const handleDelete = (e) => {
     handleDeleteHook(e, item, token);
+    setItemDeleted(true);
   };
 
-  const { image, productName, price, quantity, _id, product_spec } = item;
+  const { image, slug, quantity, productName, price, _id, product_spec } = item;
 
   const handleIncreaseQuantity = () => {
     if (itemQuantity < 10) {
-      setQuantity(itemQuantity + 1);
+      const newQuantity = itemQuantity + 1;
+      setQuantity(newQuantity);
+      setItemNum(newQuantity);
     }
   };
 
   const handleDecreaseQuantity = () => {
     if (itemQuantity > 1) {
-      setQuantity(itemQuantity - 1);
+      const newQuantity = itemQuantity - 1;
+      setQuantity(newQuantity);
+      setItemNum(newQuantity);
     }
   };
 
@@ -44,7 +51,6 @@ const CartItem = ({ item }) => {
     isLoading,
     isFetching,
     isFetched,
-
     status,
     isError,
   } = queryUpdateCart(
@@ -52,6 +58,7 @@ const CartItem = ({ item }) => {
     url_update_cart,
     update_cart_data,
     state.token,
+    controllerRef,
   );
 
   return (
@@ -72,7 +79,11 @@ const CartItem = ({ item }) => {
               />
             </td>
             <td>
-              <h1 className="text-md text-slate-900">{productName}</h1>
+              <h1 className="text-md text-slate-900">
+                <Link to={`/product/${slug}`} className="hover:text-red-800">
+                  {productName}
+                </Link>
+              </h1>
               {/* TODO: Add product_spec to the product object */}
               <p className="flex flex-row gap-2 text-xs text-slate-800">
                 <span>Size: M </span>
@@ -97,7 +108,9 @@ const CartItem = ({ item }) => {
                 className="text-base smpx-2 rounded border border-gray-300 py-1 text-center"
                 value={itemQuantity}
                 onChange={(e) => {
-                  setQuantity(e.target.value);
+                  const newQuantity = parseInt(e.target.value, 10);
+                  setQuantity(newQuantity);
+                  setItemNum(newQuantity);
                 }}
               />
               <button

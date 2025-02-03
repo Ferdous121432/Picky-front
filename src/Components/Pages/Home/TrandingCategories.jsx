@@ -10,39 +10,13 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import CategoryCard from "../../Compents/CategoryCard/CategoryCard";
 import MaxWidth81 from "../../Utils/MaxWidth81";
+import { link } from "framer-motion/client";
+import { Link } from "react-router-dom";
 
 function TrendingCategories() {
   const slider = React.useRef(null);
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
-
-  const categoris = [
-    {
-      id: 1,
-      image: "./sale/pickySale4.jpg",
-      name: "Category 1",
-    },
-    {
-      id: 2,
-      image: "./sale/pickySale4.jpg",
-      name: "Category 2",
-    },
-    {
-      id: 3,
-      image: "./sale/pickySale4.jpg",
-      name: "Category 3",
-    },
-    {
-      id: 4,
-      image: "./sale/pickySale4.jpg",
-      name: "Category 4",
-    },
-    {
-      id: 5,
-      image: "./sale/pickySale4.jpg",
-      name: "Category 5",
-    },
-  ];
 
   return (
     // <MaxWidth81>
@@ -52,17 +26,41 @@ function TrendingCategories() {
       </h2>
       <div className="m-auto w-full gap-2 md:gap-4 md:px-6">
         <div className="grid grid-flow-row grid-cols-1 justify-between gap-2 md:gap-4 lg:grid-cols-3">
-          <div className="aspect-square gap-2 bg-slate-600 md:gap-4">
+          <Link
+            to="/category/men"
+            className="aspect-square gap-2 bg-slate-600 md:gap-4"
+          >
             <CategoryCard title="Men" image="./category/pickySale3.jpg" />
-          </div>
+          </Link>
           <div className="flex aspect-[2/1] w-full flex-col gap-2">
-            <div className="h-full w-full gap-2 bg-red-400 md:gap-4">6</div>
+            <Link
+              to="/category/kids"
+              className="h-full w-full gap-2 bg-red-400 md:gap-4"
+            >
+              <CategoryCard
+                customCSS="aspect-[2]"
+                title="Kids"
+                image="./category/kids.jpg"
+              />
+            </Link>
 
-            <div className="h-full w-full gap-2 bg-yellow-900 md:gap-4">3</div>
+            <Link
+              to="/category/footwear"
+              className="h-full w-full gap-2 bg-yellow-900 md:gap-4"
+            >
+              <CategoryCard
+                customCSS="aspect-[2]"
+                title="Footwear"
+                image="./category/footwear.jpg"
+              />
+            </Link>
           </div>
-          <div className="aspect-square w-full gap-2 bg-green-700 md:gap-4">
+          <Link
+            to="/category/women"
+            className="aspect-square w-full gap-2 bg-green-700 md:gap-4"
+          >
             <CategoryCard title="Women" image="./category/pickySale1.jpg" />
-          </div>
+          </Link>
         </div>
       </div>
     </section>

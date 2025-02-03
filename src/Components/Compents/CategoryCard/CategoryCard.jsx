@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 
-export default function CategoryCard({ title, image }) {
+export default function CategoryCard({ title, image, customCSS }) {
   const [isHovered, setIsHovered] = React.useState(false);
   const animation = (variants) => {
     return {
@@ -81,7 +81,7 @@ export default function CategoryCard({ title, image }) {
           <img
             src={image}
             alt="Product"
-            className="h-full w-full object-cover"
+            className={`${customCSS} h-full w-full object-cover`}
           />
         </div>
         <motion.div

@@ -25,6 +25,7 @@ export const addToCart = async (credentials, token) => {
       console.error("Failed to add product to cart");
     }
   } catch (error) {
+    toast.error("Error adding product to cart:");
     console.error("Error adding product to cart:", error);
   }
 };

@@ -60,15 +60,7 @@ export default function CategoryProducts({ category_products }) {
       {products.map((product, index) => (
         <div className="" key={index}>
           <Link to={`${front_url}/product/${product.slug}`}>
-            <ProductCard
-              image={product.imageCover}
-              discount={product.discount}
-              newProduct={product.newProduct}
-              name={product.name}
-              description={product.description}
-              price={product.price}
-              oldPrice={product.oldPrice}
-            />
+            <ProductCard product={product} />
           </Link>
         </div>
       ))}

@@ -2,22 +2,20 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBangladeshiTakaSign } from "@fortawesome/free-solid-svg-icons";
-import { faCartShopping, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
-import { ProductImage } from "../../../Asset/Image/productimage/ProductImage";
+import { url_base } from "../../../hooks/urls";
+import { addToCart } from "../../../hooks/apiCart";
+import { useAuth } from "../../../context/AuthProvider";
 
 import { AnimatePresence, motion } from "framer-motion";
+import FavButton from "../Favorite/FavButton";
 
-const ProductCard = ({
-  image,
-  discount,
-  newProduct,
-  name,
-  description,
-  price,
-  oldPrice,
-}) => {
+const ProductCard = ({ product }) => {
   const [isHovered, setIsHovered] = React.useState(false);
+  const { state } = useAuth();
+
   React.useEffect(() => {
     if (window.innerWidth < 768) {
       setIsHovered(true);
@@ -39,7 +37,25 @@ const ProductCard = ({
     exit: { opacity: 0, y: 100, transition: { duration: 1 } },
   };
 
-  const ProductImages = ProductImage;
+  // ADD TO CART FUNCTIONALITY
+  const url_add_cart = `${url_base}/cartitems`;
+  console.log(product);
+
+  let add_cart_data = {
+    product_id: product._id,
+    slug: product.slug,
+    image: product.imageCover.split("/").slice(-1).join(),
+    quantity: product.quantity ? product.quantity : 1,
+    color: product.color,
+    productName: product.name,
+    price: product.price,
+    subtotal: product.price * (product.quantity ? product.quantity : 1),
+  };
+
+  const handleAddToCart = async (e) => {
+    e.preventDefault();
+    addToCart(add_cart_data, state.token);
+  };
 
   return (
     <AnimatePresence mode="wait">
@@ -53,33 +69,36 @@ const ProductCard = ({
             <img
               loading="lazy"
               // src={image}
-              src={ProductImages[0].src}
+              src={product.imageCover}
               alt={name}
-              className="aspect-square"
+              className="aspect-square transform transition-transform duration-300 ease-in-out hover:scale-105"
             />
 
             <motion.div
               {...animation(transition)}
               className="absolute bottom-0 left-0 z-10 flex h-12 w-full items-center justify-center gap-4 px-4"
             >
-              <div className="flex h-10 w-10 items-center justify-center bg-slate-100 bg-opacity-[.85] px-4 text-[1.2rem] text-slate-700 hover:text-red-800">
+              <div
+                onClick={handleAddToCart}
+                className="flex h-10 w-10 items-center justify-center bg-slate-100 bg-opacity-[.85] px-4 text-[1.2rem] text-slate-700 hover:text-red-800"
+              >
                 <FontAwesomeIcon icon={faCartShopping} />
               </div>
               <div className="flex h-10 w-10 items-center justify-center bg-slate-100 bg-opacity-[.85] px-4 text-[1.2rem] text-slate-700 hover:text-red-800">
-                <FontAwesomeIcon icon={faEye} />
+                <FavButton />
               </div>
             </motion.div>
           </div>
-          {discount && (
+          {product.discount && (
             <div className="absolute left-5 top-5">
               <div className="relative mb-0 h-12 w-12 rounded-full bg-red-800 bg-opacity-[.9] px-1.5">
                 <span className="transform-middle text-lg font-semibold text-slate-100">
-                  {discount}
+                  {product.discount}
                 </span>
               </div>
             </div>
           )}
-          {newProduct && (
+          {product.newProduct && (
             <div className="absolute right-[50%] top-7 translate-x-[50%]">
               <div className="relative w-full rounded bg-slate-900 bg-opacity-[.9] px-14 py-4">
                 <span className="transform-middle w-full text-sm font-semibold uppercase text-slate-100">
@@ -92,7 +111,7 @@ const ProductCard = ({
 
         <div className="relative z-20 flex w-full flex-col items-start bg-slate-50 px-4 pb-8 pt-4">
           <h3 className="text-lg font-semibold leading-tight text-slate-700 hover:text-red-800">
-            {name}
+            {product.name}
           </h3>
 
           <div className="mt-2 flex items-center gap-4 self-stretch">
@@ -101,11 +120,11 @@ const ProductCard = ({
                 className="fa-sm font-thin text-slate-900"
                 icon={faBangladeshiTakaSign}
               />
-              {price}
+              {product.price}
             </span>
-            {oldPrice && (
+            {product.oldPrice && (
               <span className="relative my-auto self-stretch decoration-slice px-2 text-md text-red-800 line-through">
-                {oldPrice}
+                {product.oldPrice}
                 <span className="absolute left-0 top-[50%] h-[2px] w-full bg-red-700"></span>
               </span>
             )}

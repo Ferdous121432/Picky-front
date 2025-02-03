@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AddToCard from "../../Compents/Card/AddToCard";
 import FavButton from "../../Compents/Favorite/FavButton";
 
@@ -25,10 +25,22 @@ const sizes = [
   },
 ];
 
-export default function ProductHeaderDetails({ details, handleAddToCart }) {
+export default function ProductHeaderDetails({
+  details,
+  handleAddToCart,
+  setProductSize,
+}) {
   const discount = details.old_price
     ? `${Math.floor(((details.old_price - details.price) / details.old_price) * 100)}`
     : "";
+
+  const [selectedSize, setSelectedSize] = useState("");
+  const handleProductSize = (size) => {
+    setProductSize(size);
+    setSelectedSize(size);
+    console.log(selectedSize);
+  };
+
   return (
     <div className="mx-2 my-2 mb-5 flex w-full flex-col gap-3 px-4 py-2 text-slate-800 md:mb-0 md:px-0 md:py-0">
       <div>
@@ -59,7 +71,12 @@ export default function ProductHeaderDetails({ details, handleAddToCart }) {
           {sizes.map((item) => (
             <button
               key={item.id}
-              className="w-full max-w-[3rem] rounded-md border border-slate-800 px-2 py-1 text-sm text-slate-800"
+              onClick={() => handleProductSize(item.size)}
+              className={`w-full max-w-[3rem] rounded-md border px-2 py-1 text-sm ${
+                selectedSize === item.size
+                  ? "bg-slate-800 text-white"
+                  : "border-slate-800 text-slate-800"
+              }`}
             >
               {item.size}
             </button>

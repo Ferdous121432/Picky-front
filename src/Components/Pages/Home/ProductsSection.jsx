@@ -4,17 +4,34 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/autoplay";
 
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 import ProductCard from "../../Compents/ProductCard/ProductCard";
+import useQueryHook from "../../../hooks/useQueryHook";
+import { url_productsCategory } from "../../../hooks/urls";
+import { Link } from "react-router-dom";
 
-function ProductsSection({ title, products, description }) {
+function ProductsSection({ title, description }) {
   const slider = React.useRef(null);
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
+  const url = `${url_productsCategory}/all?page=1&limit=5`;
+
+  const {
+    data: productdata,
+    isLoading,
+    isFetching,
+    status,
+    isError,
+    error,
+  } = useQueryHook("products", url);
+
+  if (isLoading) return <div>Loading...</div>;
+
+  const products = productdata?.data?.products;
+  console.log(products);
 
   return (
     <section className="mt-[1rem] flex flex-col items-center justify-center">
@@ -74,17 +91,10 @@ function ProductsSection({ title, products, description }) {
           }}
         >
           {products.map((product, index) => (
-            <SwiperSlide key={index}>
-              <ProductCard
-                image={product.image}
-                discount={product.discount}
-                newProduct={product.newProduct}
-                name={product.name}
-                description={product.description}
-                price={product.price}
-                oldPrice={product.oldPrice}
-                modules={[Autoplay]}
-              />
+            <SwiperSlide key={product._id}>
+              <Link to={`/product/${product.slug}`}>
+                <ProductCard product={product} modules={[Autoplay]} />
+              </Link>
             </SwiperSlide>
           ))}
           <div

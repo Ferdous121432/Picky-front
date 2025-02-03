@@ -26,7 +26,20 @@ export const queryGetCart = (key, url, token) => {
   });
 };
 
-export const queryUpdateCart = (key, url, update_cart_data, token) => {
+export const queryUpdateCart = (
+  key,
+  url,
+  update_cart_data,
+  token,
+  controllerRef,
+) => {
+  if (controllerRef.current) {
+    controllerRef.current.abort();
+  }
+
+  controllerRef.current = new AbortController();
+  const signal = controllerRef.current.signal;
+
   const fetchCart = async () => {
     const response = await fetch(url, {
       method: "PATCH",
@@ -35,6 +48,7 @@ export const queryUpdateCart = (key, url, update_cart_data, token) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(update_cart_data),
+      signal,
     });
 
     if (!response.ok) {
@@ -48,7 +62,6 @@ export const queryUpdateCart = (key, url, update_cart_data, token) => {
   return useQuery({
     queryKey: [key, url],
     queryFn: fetchCart,
-    refetchOnMount: true,
     enabled: !!token,
   });
 };
@@ -62,6 +75,7 @@ export const queryAddCart = (key, url, add_cart_data, token) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(add_cart_data),
+      signal,
     });
 
     if (!response.ok) {

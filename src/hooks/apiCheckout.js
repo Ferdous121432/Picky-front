@@ -4,7 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 
 export const makePayment = async (paymentDetails, token) => {
   const stripe = await loadStripe(
-    "pk_test_51Q8ouGIeuxFSv7HPlf3neWTa0YHpGfFjPeCPPxKwAKXal02hyOHm7k8gZObfQPlmU2ttYsIAgn182hfCuKZ6nCx100iC3TVn49",
+    "pk_test_51QnyemI8jHUIhJ271mAAxO6krF4VK6h0TmcIkyWcdlOKKE2YFwgeOtn45Kfiaydv3a4CD6c8lFiNBPCGVE94RrHM00RdnXjp7d",
   );
 
   // send product details to the server
@@ -39,7 +39,7 @@ export const makePayment = async (paymentDetails, token) => {
 
 export const makeMultiplePayments = async (products, token) => {
   const stripe = await loadStripe(
-    "pk_test_51Q8ouGIeuxFSv7HPlf3neWTa0YHpGfFjPeCPPxKwAKXal02hyOHm7k8gZObfQPlmU2ttYsIAgn182hfCuKZ6nCx100iC3TVn49",
+    "pk_test_51QnyemI8jHUIhJ271mAAxO6krF4VK6h0TmcIkyWcdlOKKE2YFwgeOtn45Kfiaydv3a4CD6c8lFiNBPCGVE94RrHM00RdnXjp7d",
   );
 
   // const products = [

@@ -16,6 +16,7 @@ import About from "./Components/Pages/About/About";
 import ContactUs from "./Components/Pages/ContactUs/ContactUs";
 import Favorite from "./Components/Pages/Favorite/Favorite";
 import UserProfile from "./Components/Pages/UserProfile/UserProfile";
+import ErrorPage from "./Components/Pages/ErrorPage/ErrorPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,7 +27,7 @@ const queryClient = new QueryClient({
       retry: 1, // Retry failed requests once
       retryDelay: 30000, // Retry after 30 seconds
       networkTimeout: 20000, // Set error if loading time exceeds 20 seconds
-
+      cancelRefetchOnReconnect: true, // Cancel refetch if reconnecting
       cacheTime: 1000 * 60 * 0, // 30 minutes
       onError: (error) => {
         toast.error(`Error: ${error.message}`);
@@ -56,6 +57,7 @@ export default function App() {
             <Route path="/userprofile" element={<UserProfile />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/favorites" element={<Favorite />} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </AnimatePresence>
       </QueryClientProvider>

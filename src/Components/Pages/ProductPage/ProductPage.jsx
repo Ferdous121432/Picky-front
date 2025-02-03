@@ -16,6 +16,7 @@ import { url_base } from "../../../hooks/urls";
 import useQueryHook from "../../../hooks/useQueryHook";
 import { queryAddCart } from "../../../hooks/queryCartHook";
 import { useAuth } from "../../../context/AuthProvider";
+import { addToCart } from "../../../hooks/apiCart";
 
 const productDetailsReviews = [
   "Description",
@@ -25,21 +26,14 @@ const productDetailsReviews = [
 ];
 
 export default function () {
+  const [params, setParams] = useState("");
   const [productDetails, setProductDetails] = useState(0);
+  const [productSize, setProductSize] = useState();
   const { state } = useAuth();
 
-  const [params, setParams] = useState("");
   let { product_name } = useParams();
   const url = `${url_base}/products/${product_name}`;
   let productData = {};
-  let add_cart_data = {
-    cartID: "66ebf95e087bdf0a82738427",
-    product_id: "678e62b138e910dea9492ee9",
-    quantity: 8,
-    productName: "denim Shirt",
-    price: 1000,
-    image: "product-864634-1737660952643-cover-image.jpeg",
-  };
 
   useEffect(() => {
     setParams(product_name);
@@ -56,23 +50,36 @@ export default function () {
   productData = products?.data?.data;
   console.log(productData);
 
+  // ADD TO CART FUNCTIONALITY
   const url_add_cart = `${url_base}/cartitems`;
+  console.log(productData);
 
-  const handleAddToCart = async () => {
-    if (!errorAddCart) {
-      toast.success("Item added to cart");
-    } else {
-      toast.error("Failed to add item to cart");
-    }
+  let add_cart_data = {
+    product_id: productData?._id,
+    slug: productData?.slug,
+    image: productData?.imageCover.split("/").slice(-1).join(),
+    quantity: productData?.quantity ? productData?.quantity : 1,
+    color: productData?.color,
+    size: productSize,
+    productName: productData?.name,
+    price: productData?.price,
+    subtotal: productData?.price * productData?.quantity,
+    // product_spec: { color, sizes },
   };
 
-  const {
-    data: addCart,
-    isFetching: addCartFetching,
-    isFetched,
-    status,
-    isError: errorAddCart,
-  } = queryAddCart("AddCart", url_add_cart, add_cart_data, state.token);
+  const handleAddToCart = async (e) => {
+    e.preventDefault();
+
+    addToCart(add_cart_data, state.token);
+  };
+
+  // const {
+  //   data: addCart,
+  //   isFetching: addCartFetching,
+  //   isFetched,
+  //   status,
+  //   isError: errorAddCart,
+  // } = queryAddCart("AddCart", url_add_cart, add_cart_data, state.token);
 
   if (isFetching) return <SpinnerFullPage />;
 
@@ -108,6 +115,7 @@ export default function () {
                 <ProductHeaderDetails
                   handleAddToCart={handleAddToCart}
                   details={productData}
+                  setProductSize={setProductSize}
                 />
               </div>
               <div></div>

@@ -27,7 +27,7 @@ import FeatureCard from "./FeatureCard";
 
 function FeatureSection() {
   return (
-    <section className="flex flex-col items-center justify-center bg-orange-50 py-24">
+    <section className="flex flex-col items-center justify-center bg-slate-200 py-24">
       <div className="flex w-[1334px] max-w-full flex-wrap items-center justify-between gap-10">
         {/* {features.map((feature, index) => (
           <FeatureCard

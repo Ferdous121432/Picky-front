@@ -1,6 +1,6 @@
 /* eslint-disable */
 import Layout from "../../Utils/Layout";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 import CartItem from "./CartItem";
@@ -14,16 +14,14 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 
 import { useAuth } from "../../../context/AuthProvider";
 import { makeMultiplePayments } from "../../../hooks/apiCheckout";
-import useQueryHook from "../../../hooks/useQueryHook";
 import { baseURL, mycartURL } from "../../../hooks/apiURL";
-import { useQuery } from "@tanstack/react-query";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { queryGetCart } from "../../../hooks/queryCartHook";
-
 const Cart = () => {
-  const cart_url = `${baseURL}/${mycartURL}`;
-
   const { state } = useAuth();
+  const cart_url = `${baseURL}/${mycartURL}`;
+  const [quantity, setQuantity] = useState([]);
+  const [itemDeleted, setItemDeleted] = useState(false);
 
   const {
     data: myCart,
@@ -34,15 +32,39 @@ const Cart = () => {
   } = queryGetCart("cart", cart_url, state.token);
 
   const carts = myCart?.data?.cartItems;
+  const cartQuantity = carts?.map((item) => item.quantity);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  //TODO: Calculate total price
-  const totalPrice = myCart?.data?.cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0,
-  );
-  console.log(carts);
+  useEffect(() => {
+    if (carts) {
+      setQuantity(carts.map((item) => item.quantity));
+      const calculatedTotalPrice = carts.reduce(
+        (acc, item) => acc + item.price * item.quantity,
+        0,
+      );
+      setTotalPrice(calculatedTotalPrice);
+    }
+  }, [carts]);
 
-  // console.log(carts.length);
+  useEffect(() => {
+    if (carts) {
+      const calculatedTotalPrice = quantity.reduce(
+        (acc, item, index) => acc + item * carts[index].price,
+        0,
+      );
+      setTotalPrice(calculatedTotalPrice);
+    }
+  }, [quantity]);
+
+  useEffect(() => {
+    const calculatedTotalPrice = quantity.reduce(
+      (acc, item, index) => acc + item * carts[index].price,
+      0,
+    );
+    setTotalPrice(calculatedTotalPrice);
+    console.log("total price", totalPrice);
+    console.log(quantity);
+  }, [quantity, itemDeleted, setItemDeleted]);
 
   const handleCheckout = () => {
     makeMultiplePayments(carts, state.token);
@@ -64,7 +86,7 @@ const Cart = () => {
     return <SpinnerFullPage />;
   }
 
-  if (carts?.length === 0 && status === "success") {
+  if (quantity?.length === 0 && status === "success") {
     return (
       <Layout>
         <div
@@ -72,7 +94,9 @@ const Cart = () => {
           style={{ height: "50vh" }}
         >
           <div>No items in cart</div>
-          <Button handleClick={() => Navigate("/")}>Continue Shopping</Button>
+          <Link to="/">
+            <Button>Continue Shopping</Button>
+          </Link>
         </div>
       </Layout>
     );
@@ -88,8 +112,26 @@ const Cart = () => {
                 <div className="flex w-full flex-col max-md:mt-10 max-md:max-w-full">
                   <CartItemHeader />
                   <div className="mt-14 max-md:mr-2.5 max-md:mt-10 max-md:max-w-full">
-                    {carts?.map((item) => (
-                      <CartItem key={item._id} item={item} />
+                    {carts?.map((item, index) => (
+                      <CartItem
+                        key={item._id}
+                        item={item}
+                        itemNum={quantity[index]}
+                        setItemNum={(newQuantity) => {
+                          const updatedQuantities = [...quantity];
+                          updatedQuantities[index] = newQuantity;
+                          setQuantity(updatedQuantities);
+                        }}
+                        setItemDeleted={(deleted) => {
+                          if (deleted) {
+                            const updatedQuantities = quantity.filter(
+                              (_, i) => i !== index,
+                            );
+                            setQuantity(updatedQuantities);
+                          }
+                          setItemDeleted(deleted);
+                        }}
+                      />
                     ))}
                   </div>
                 </div>
