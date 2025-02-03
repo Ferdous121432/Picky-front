@@ -64,7 +64,7 @@ export const navCategory = {
   enter: {
     y: 0,
     // height: "100vh",
-    backgroundColor: "white",
+    backgroundColor: "#020617",
     transition: {
       duration: 1.5,
     },
