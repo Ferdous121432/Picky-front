@@ -13,4 +13,4 @@ export const checkoutURL = "api/v1/checkout/checkout-session";
 
 export const userOrdersURL = "api/v1/checkout/my-orders";
 export const userEditProfileURL = "api/v1/users/updateme";
-export const url_productsCategory = `${baseURL}/api/v1/products/category`;
+export const url_productsCategory = `${baseURL}/${productsByCategory}`;
