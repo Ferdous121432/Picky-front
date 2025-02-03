@@ -3,9 +3,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBangladeshiTakaSign } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { toast } from "react-toastify";
 
-import { url_base } from "../../../hooks/urls";
 import { addToCart } from "../../../hooks/apiCart";
 import { useAuth } from "../../../context/AuthProvider";
 
@@ -38,7 +36,7 @@ const ProductCard = ({ product }) => {
   };
 
   // ADD TO CART FUNCTIONALITY
-  const url_add_cart = `${url_base}/cartitems`;
+
   console.log(product);
 
   let add_cart_data = {

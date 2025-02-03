@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { motion, spring } from "framer-motion";
 import useQueryHook from "../../../hooks/useQueryHook";
 
-import { url_productsCategory } from "../../../hooks/urls";
+import { url_productsCategory } from "../../../hooks/apiURL";
 import SpinnerFullPage from "../../Compents/Spinner/SpinnerFullPage";
 import Layout from "../../Utils/Layout";
 import Breadcum from "./Breadcum";

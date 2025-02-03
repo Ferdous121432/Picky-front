@@ -10,7 +10,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 import ProductCard from "../../Compents/ProductCard/ProductCard";
 import useQueryHook from "../../../hooks/useQueryHook";
-import { url_productsCategory } from "../../../hooks/urls";
+import { url_productsCategory } from "../../../hooks/apiURL";
 import { Link } from "react-router-dom";
 
 function ProductsSection({ title, description }) {

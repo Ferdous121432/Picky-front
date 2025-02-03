@@ -1,5 +1,5 @@
-export const baseURL = "http://127.0.0.1:3000";
-// export const baseURL = "https://shopperoo-backend.vercel.app";
+// export const baseURL = "http://127.0.0.1:3000";
+export const baseURL = "https://shopperoo-backend.vercel.app";
 export const signupURL = "api/v1/users/signup";
 export const loginURL = "api/v1/users/login";
 export const userURL = "api/v1/users/me";
@@ -13,3 +13,4 @@ export const checkoutURL = "api/v1/checkout/checkout-session";
 
 export const userOrdersURL = "api/v1/checkout/my-orders";
 export const userEditProfileURL = "api/v1/users/updateme";
+export const url_productsCategory = `${baseURL}/api/v1/products/category`;

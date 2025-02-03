@@ -12,7 +12,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import SizeGuide from "./SizeGuide";
 import SpinnerFullPage from "../../Compents/Spinner/SpinnerFullPage";
 
-import { url_base } from "../../../hooks/urls";
+import { baseURL, carItemsURL, productURL } from "../../../hooks/apiURL";
 import useQueryHook from "../../../hooks/useQueryHook";
 import { queryAddCart } from "../../../hooks/queryCartHook";
 import { useAuth } from "../../../context/AuthProvider";
@@ -32,7 +32,8 @@ export default function () {
   const { state } = useAuth();
 
   let { product_name } = useParams();
-  const url = `${url_base}/products/${product_name}`;
+  const url = `${baseURL}/${productURL}/${product_name}`;
+
   let productData = {};
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export default function () {
   console.log(productData);
 
   // ADD TO CART FUNCTIONALITY
-  const url_add_cart = `${url_base}/cartitems`;
+  const url_add_cart = `${baseURL}/${carItemsURL}`;
   console.log(productData);
 
   let add_cart_data = {
