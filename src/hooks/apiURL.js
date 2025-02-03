@@ -1,5 +1,5 @@
-// export const baseURL = "http://127.0.0.1:3000";
-export const baseURL = "https://picky-back.vercel.app";
+export const baseURL = "http://127.0.0.1:3000";
+// export const baseURL = "https://picky-back.vercel.app";
 export const signupURL = "api/v1/users/signup";
 export const loginURL = "api/v1/users/login";
 export const userURL = "api/v1/users/me";
