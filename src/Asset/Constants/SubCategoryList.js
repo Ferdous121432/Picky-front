@@ -108,16 +108,7 @@ export const men = [
     name: "Active Wear",
     slug: "active-wear",
   },
-  {
-    id: 5,
-    name: "Supreme Collection",
-    slug: "supreme-collection",
-  },
-  {
-    id: 6,
-    name: "Festive Spot Light",
-    slug: "festive-spot-light",
-  },
+
   {
     id: 7,
     name: "Accessories",

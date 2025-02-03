@@ -11,6 +11,7 @@ import {
   footwear,
   accessories,
 } from "./../../../Asset/Constants/SubCategoryList";
+import { Link } from "react-router-dom";
 
 export default function MobileCategory({ open, category }) {
   const animation = (variants) => {
@@ -56,26 +57,45 @@ export default function MobileCategory({ open, category }) {
     },
   };
 
+  const Subcategory = ({ subcategory }) => {
+    return (
+      <div className="mt-4 flex w-[60%] flex-col justify-start gap-3">
+        {subcategory.map((category) => (
+          <Link
+            to={`/category/${category.slug}`}
+            className="flex items-center justify-center bg-slate-800 text-slate-50"
+            key={category.id}
+            style={{
+              clipPath: "polygon(2% 0, 100% 0, 98% 100%, 0 100%)",
+            }}
+          >
+            <p className="px-2 py-1 uppercase">{category.name}</p>
+          </Link>
+        ))}
+      </div>
+    );
+  };
+
   const renderCategoryContent = () => {
     switch (category) {
       case 1:
-        return { id: 1, name: "new arrivals", url: `category/new-arrivals` };
+        return <Subcategory subcategory={newArrival} />;
       case 2:
-        return { id: 2, name: "men", url: `category/men` };
+        return <Subcategory subcategory={men} />;
       case 3:
-        return { id: 3, name: "women", url: `category/women` };
+        return <Subcategory subcategory={women} />;
       case 4:
-        return { id: 4, name: "kids", url: `category/kids` };
+        return <Subcategory subcategory={kids} />;
       case 5:
-        return { id: 5, name: "newborn", url: `category/newborn` };
+        return <Subcategory subcategory={newborn} />;
       case 6:
-        return { id: 6, name: "accessories", url: `category/accessories` };
+        return <Subcategory subcategory={accessories} />;
       case 7:
-        return { id: 7, name: "footwear", url: `category/footwear` };
+        return <Subcategory subcategory={footwear} />;
       case 10:
-        return { id: 10, name: "sales", url: `category/sales` };
+        return <Subcategory subcategory={sales} />;
       case 11:
-        return { id: 11, name: "winter/24", url: `category/sales` };
+        return <Subcategory subcategory={winter} />;
       default:
         return null;
     }
@@ -85,9 +105,9 @@ export default function MobileCategory({ open, category }) {
     <motion.div
       key={open}
       {...animation(renderMobileNavCategory)}
-      className="bg-slate-500"
+      className="flex h-full w-full items-center justify-center"
     >
-      MobileCategory
+      {renderCategoryContent()}
       <h1 className="text-2xl font-bold text-white">{category}</h1>
     </motion.div>
   );

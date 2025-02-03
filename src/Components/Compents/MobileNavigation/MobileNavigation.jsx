@@ -22,7 +22,6 @@ export default function MobileNavigation({ navOpen, setNavOpen }) {
     return {
       initial: "initial",
       animate: navOpen === true ? "enter" : "initial",
-      // animate: "enter",
       exit: "exit",
       variants,
     };
