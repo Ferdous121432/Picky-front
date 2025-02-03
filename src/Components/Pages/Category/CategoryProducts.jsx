@@ -59,7 +59,7 @@ export default function CategoryProducts({ category_products }) {
     <div className="grid w-full grid-cols-1 items-center justify-between gap-2 px-2 py-2 xs:grid-cols-2 sm:grid-cols-3 sm:py-6 md:gap-4 md:px-6 lg:grid-cols-4 xl:grid-cols-5">
       {products.map((product, index) => (
         <div className="" key={index}>
-          <Link to={`${front_url}/product/${product.slug}`}>
+          <Link to={`/product/${product.slug}`}>
             <ProductCard product={product} />
           </Link>
         </div>
