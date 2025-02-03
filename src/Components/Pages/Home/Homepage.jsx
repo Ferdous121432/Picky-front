@@ -123,23 +123,24 @@ export default function Homepage() {
 
         <DeliveryOffer image={deliveryImages} />
         <ProductsSection
-          title="Best Sellers"
+          title="men's Collection"
+          description="Winter/24"
           products={products}
-          caseName="BestSellers"
+          category_url={"/category/winter"}
         />
         <TrendingCategories />
         <ProductsSection
-          title="Best Sellers"
+          title="Women's Collection"
           description="Winter/24"
           products={products}
-          caseName="BestSellers"
+          category_url={"/category/winter"}
         />
         <DeliveryOffer image={winterImages} />
         <ProductsSection
           title="Best Sellers"
           description="Featured"
           products={products}
-          caseName="BestSellers"
+          category_url={"/category/winter"}
         />
         <FeaturedBanner image={winterImages} />
       </Layout>

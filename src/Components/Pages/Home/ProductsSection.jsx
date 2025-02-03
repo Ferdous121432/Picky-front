@@ -13,7 +13,7 @@ import useQueryHook from "../../../hooks/useQueryHook";
 import { url_productsCategory } from "../../../hooks/apiURL";
 import { Link } from "react-router-dom";
 
-function ProductsSection({ title, description }) {
+function ProductsSection({ title, description, category_url }) {
   const slider = React.useRef(null);
   const navigationPrevRef = React.useRef(null);
   const navigationNextRef = React.useRef(null);
@@ -35,7 +35,7 @@ function ProductsSection({ title, description }) {
 
   return (
     <section className="mt-[1rem] flex flex-col items-center justify-center">
-      <h2 className="mb-2 text-center text-xl font-bold leading-tight text-slate-700 lg:text-2xl">
+      <h2 className="mb-2 text-center text-xl font-bold uppercase leading-tight text-slate-700 lg:text-2xl">
         {title}
       </h2>
       {description && (
@@ -127,9 +127,12 @@ function ProductsSection({ title, description }) {
           </div>
         </Swiper>
       </div>
-      <button className="text-base mb-12 mt-8 w-[15.3125rem] max-w-full border border-solid border-yellow-600 bg-white px-[1rem] py-[0.1875rem] font-semibold text-yellow-600 max-md:px-[0.3125rem]">
+      <Link
+        to={category_url}
+        className="text-base mb-12 mt-8 w-[15.3125rem] border border-solid border-slate-600 bg-white px-[1rem] py-[0.1875rem] text-center font-semibold text-slate-600"
+      >
         Explore More
-      </button>
+      </Link>
     </section>
   );
 }
