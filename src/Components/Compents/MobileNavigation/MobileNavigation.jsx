@@ -11,13 +11,12 @@ import { AnimatePresence, delay, motion, stagger } from "framer-motion";
 
 export default function MobileNavigation({ navOpen, setNavOpen }) {
   const [open, setOpen] = useState(null);
+  const [category, setCategory] = useState(null);
 
   const handleOpen = (id) => {
-    if (open === id) {
-      setOpen("");
-    } else {
-      setOpen(id);
-    }
+    setCategory(id);
+    setOpen(true);
+    console.log(id);
   };
   const anima = (variants) => {
     return {
@@ -38,11 +37,13 @@ export default function MobileNavigation({ navOpen, setNavOpen }) {
   };
 
   const renderMobileNavCategory = () => {
-    return (
-      <motion.div key={open} className="bg-slate-500">
-        <MobileCategory open={open} />
-      </motion.div>
-    );
+    switch (open) {
+      case 1:
+        return <MobileCategory category={category} />;
+
+      default:
+        return <MobileCategory category={category} />;
+    }
   };
 
   const handleClick = () => {
@@ -87,7 +88,6 @@ export default function MobileNavigation({ navOpen, setNavOpen }) {
                 className="flex h-screen w-screen flex-col items-center justify-center bg-yellow-800"
               >
                 {renderMobileNavCategory()}
-                <button onClick={handleClick}>dd</button>
                 {/*Back & Close Button */}
                 <div className="absolute bottom-0 mb-[56px] flex w-screen flex-row bg-slate-900 text-slate-50">
                   <div
