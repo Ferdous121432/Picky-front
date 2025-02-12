@@ -16,6 +16,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
+        assistant: ["Assistant", "sans-serif"],
         palanquin: ["Palanquin", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
         Poppins: ["Poppins", "sans-serif"],
@@ -75,5 +76,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

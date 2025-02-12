@@ -15,7 +15,7 @@ export default function Layout({ children }) {
   };
 
   return (
-    <div className="">
+    <div className="font-assistant">
       <Header />
       <MobileHeader handleMobileNav={handleMobileNav} />
       {navOpen && (
